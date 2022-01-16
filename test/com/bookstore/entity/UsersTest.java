@@ -21,7 +21,7 @@ public class UsersTest {
 		entityManager.persist(user1);
 		
 		entityManager.getTransaction().commit();
-		entityManager.clear();
+		entityManager.close();
 		entityManagerFactory.close();
 		
 		System.out.println("A Users object was persisted");
