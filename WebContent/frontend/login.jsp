@@ -4,18 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>Everygreen Books</title>
+<title>Login</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 
     <div align="center">
-        <br/><br/>
-        <h3>This is main content</h3>
-        <h2>New Books:</h2>
-        <h2>Best-Selling Books:</h2>
-        <h2>Most-favored Books:</h2>
-        <br/><br/>
+        <h2>Please login:</h2>
+        <form>
+        	Email: <input type="text" size="10"><br/>
+            Password: <input type="password" size="10">
+            <input type="submit" value="Login">
+        </form>
     </div>
     
 	<jsp:directive.include file="footer.jsp" />
