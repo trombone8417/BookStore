@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
@@ -56,6 +57,37 @@ public class UserDAOTest {
 		String actual = user.getPassword();
 		
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testGetUsersFound() {
+		Integer userId = 19;
+		Users user = userDAO.get(userId);
+		assertNotNull(user);
+	}
+	
+	@Test
+	public void testGetUsersNotFound() {
+		Integer userId = 99;
+		Users user = userDAO.get(userId);
+		
+		assertNull(user);
+	}
+	
+	@Test
+	public void testDeleteUsers() {
+		Integer userId = 26;
+		userDAO.delete(userId);
+		
+		Users user = userDAO.get(userId);
+
+		assertNull(user);
+	}
+	
+	@Test(expected = EntityNotFoundException.class)
+	public void testDeleteNonExistUsers() {
+		Integer userId = 55;
+		userDAO.delete(userId);
 	}
 	
 	@AfterClass
