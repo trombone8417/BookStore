@@ -14,6 +14,12 @@
         <h3><a href="user_form.jsp">Create new User</a></h3>
     </div>
 
+	<c:if test="${message != null}">
+	<div align="center">
+		<h4><i>${message}</i></h4>
+	</div>
+	</c:if>
+
     <div align="center">
        <table border="1" cellpadding="5">
             <tr>

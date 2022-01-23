@@ -20,6 +20,16 @@ public class Users {
 	private String fullName;
 	private String password;
 	
+	public Users() {
+	}
+
+	public Users(String email, String fullName, String password) {
+		super();
+		this.email = email;
+		this.fullName = fullName;
+		this.password = password;
+	}
+	
 	@Column(name = "user_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
