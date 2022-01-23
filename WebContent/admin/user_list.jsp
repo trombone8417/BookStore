@@ -11,7 +11,7 @@
     <jsp:directive.include file="header.jsp" />
     <div align="center">
         <h2>Users Management</h2>
-        <h3><a href="">Create new User</a></h3>
+        <h3><a href="user_form.jsp">Create new User</a></h3>
     </div>
 
     <div align="center">
