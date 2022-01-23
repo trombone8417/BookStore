@@ -23,7 +23,7 @@ public class UserDAOTest {
 	
 	@BeforeClass
 	public static void setupClass() {
-		entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		entityManager = entityManagerFactory.createEntityManager();
 		userDAO = new UserDAO(entityManager);
 	}

@@ -10,7 +10,7 @@ public class CategoryTest {
 	public static void main(String[] args) {
 		Category newCat = new Category("Advanced Java");
 		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		entityManager.getTransaction().begin();

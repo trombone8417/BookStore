@@ -26,7 +26,7 @@ public class UserServices {
 		this.request = request;
 		this.response = response;
 		
-		entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		entityManager = entityManagerFactory.createEntityManager();
 		userDAO = new UserDAO(entityManager);
 	}
