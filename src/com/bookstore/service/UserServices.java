@@ -50,13 +50,25 @@ public class UserServices {
 		requestDispatcher.forward(request, response);
 	}
 
-	public void createUser() {
+	public void createUser() throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String fullName = request.getParameter("fullname");
 		String password = request.getParameter("password");
 		
-		Users newUser = new Users(email, fullName, password);
-		userDAO.create(newUser);
+		Users existUser = userDAO.findByEmail(email);
+		
+		if (existUser != null) {
+			String message = "Could not create user. A user with email "
+					+ email + " already exists";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			Users newUser = new Users(email, fullName, password);
+			userDAO.create(newUser);
+			listUser("New user created successfully");
+		}
+		
 	}
 
 }
