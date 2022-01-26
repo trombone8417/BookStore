@@ -71,4 +71,16 @@ public class UserServices {
 		
 	}
 
+	public void editUser() throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("id"));
+		Users user = userDAO.get(userId);
+
+		String editPage = "user_form.jsp";
+		request.setAttribute("user", user);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+		
+	}
+
 }
