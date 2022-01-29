@@ -16,24 +16,22 @@ import org.junit.Test;
 
 import com.bookstore.entity.Users;
 
-public class UserDAOTest {
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+public class UserDAOTest extends BaseDAOTest {
+
 	private static UserDAO userDAO;
 	
 	@BeforeClass
-	public static void setupClass() {
-		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
-		entityManager = entityManagerFactory.createEntityManager();
+	public static void setupClass() throws Exception {
+		BaseDAOTest.setUpBeforeClass();
 		userDAO = new UserDAO(entityManager);
 	}
 
 	@Test
 	public void testCreateUsers() {
 		Users user1 = new Users();
-		user1.setEmail("tommy@gmail.com");
-		user1.setFullName("Tommy Timothy");
-		user1.setPassword("abcdefghij");
+		user1.setEmail("tommy3@gmail.com");
+		user1.setFullName("Tommy Timothy 3");
+		user1.setPassword("abcdefghij3");
 		
 		user1 = userDAO.create(user1);
 		
@@ -119,9 +117,8 @@ public class UserDAOTest {
 	}
 	
 	@AfterClass
-	public static void tearDownClass() {
-		entityManager.close();
-		entityManagerFactory.close();
+	public static void tearDownAfterClass() throws Exception {
+		BaseDAOTest.tearDownAfterClass();
 	}
 
 }
