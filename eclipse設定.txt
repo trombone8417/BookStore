@@ -1,0 +1,12 @@
+1. Autocomplete
+eclipse→Windows→Preferences→Java→Editor→Content Assist
+.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
+eclipse→Windows→Preferences→Java→Editor→Content Assist
+.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
+web→html Files→Editor→Content Assist
+<=.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
+
+2. UTF-8
+選擇「Window」>「Preferences」進行設定
+在「General」>「Workspace」裡面設定「Text file encoding」將 Default (MS950) 改成「Other:」選擇「UTF-8」之後按下「Apply」並按「OK」結束設定
+接下來在設定「Web」裡面的「CSS Files」、「HTML Files」、「JSP Files」一樣都在「Encoding」中設定為「UTF-8」，設定完成後按下「Apply」就可以了。
