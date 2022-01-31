@@ -1,4 +1,4 @@
-package com.bookstore.controllers.admin;
+package com.bookstore.controllers;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
