@@ -1,7 +1,7 @@
 1. Autocomplete
 eclipse→Windows→Preferences→Java→Editor→Content Assist
 .abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
-eclipse→Windows→Preferences→Java→Editor→Content Assist
+eclipse→Windows→Preferences→JavaScript→Editor→Content Assist
 .abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
 web→html Files→Editor→Content Assist
 <=.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
