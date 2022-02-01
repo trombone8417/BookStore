@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="BIG5"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
 
@@ -15,6 +16,12 @@
         <div align="center">
             <h1>Book Store Administration</h1>
             <h2>Admin Login</h2>
+            
+           	<c:if test="${message != null}">
+			<div align="center">
+				<h4 class="message"><i>${message}</i></h4>
+			</div>
+			</c:if>
 
             <form id="loginForm" action="login" method="post">
                 <table>
