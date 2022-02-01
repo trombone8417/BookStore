@@ -1,6 +1,9 @@
 package com.bookstore.dao;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -62,7 +65,17 @@ public class JpaDAO<E> {
 		query.setParameter(paramName, paramValue);
 		return query.getResultList();
 	}
-	
+
+	public List<E> findWithNamedQuery(String queryName, Map<String, Object> parameters){
+		Query query = entityManager.createNamedQuery(queryName);
+		Set<Entry<String, Object>> setParameters = parameters.entrySet();
+		
+		for (Entry<String, Object> entry : setParameters) {
+			query.setParameter(entry.getKey(), entry.getValue());
+		}
+		
+		return query.getResultList();
+	}
 	public long countWithNamedQuery(String queryName) {
 		Query query = entityManager.createNamedQuery(queryName);
 		return (long) query.getSingleResult();
