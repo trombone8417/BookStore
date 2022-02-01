@@ -6,12 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <title>Create New User</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <jsp:directive.include file="header.jsp" />
     
     <div align="center">
-        <h2>
+        <h2 class="pageheading">
         	<c:if test="${user != null}">
         		Edit User
         	</c:if>
@@ -30,7 +31,7 @@
     	<form action="create_user" method="post" onsubmit="return validateFormInput()">
     </c:if>
     
-        <table>
+        <table class="form">
         	<tr>
         		<td align="right">Email:</td>
         		<td align="left"><input type="text" id="email" name="email" size="20" value="${user.email}" /></td>
@@ -48,13 +49,13 @@
         	</tr>
         	<tr>
         		<td colspan="2" align="center">
-        			<input type="submit" value="Save" />
-        			<input type="button" value="Cancel" onclick="javascript:history.go(-1)" />
+        			<button type="submit">Save</button>&nbsp;&nbsp;&nbsp;
+        			<button onclick="javascript:history.go(-1)">Cancel</button>
         		</td>
         	</tr>
         </table>
-    </div>
 	</form>
+    </div>
     <jsp:directive.include file="footer.jsp" />
 </body>
 
