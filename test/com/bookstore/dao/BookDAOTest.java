@@ -11,6 +11,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -88,6 +90,20 @@ public class BookDAOTest extends BaseDAOTest {
 		Book createdBook = bookDao.create(newBook);
 		
 		assertTrue(createdBook.getBookId() > 0);
+	}
+	
+	@Test(expected = EntityNotFoundException.class)
+	public void testDeleteBookFail() {
+		Integer bookId = 100;
+		bookDao.delete(bookId);
+	}
+	
+	@Test
+	public void testDeleteBookSuccess() {
+		Integer bookId = 36;
+		bookDao.delete(bookId);
+		
+		assertTrue(true);
 	}
 
 }
