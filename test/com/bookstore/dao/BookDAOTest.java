@@ -32,6 +32,35 @@ public class BookDAOTest extends BaseDAOTest {
 	public static void tearDownAfterClass() throws Exception {
 		BaseDAOTest.tearDownAfterClass();
 	}
+	
+	@Test
+	public void testUpdateBook() throws ParseException, IOException {
+		Book existBook = new Book();
+		existBook.setBookId(36);
+		
+		Category category = new Category("Core Java");
+		category.setCategoryId(11);
+		existBook.setCategory(category);
+		
+		existBook.setTitle("Effective Java (3nd Edition)");
+		existBook.setAuthor("Joshua Bloch");
+		existBook.setDescription("Are you looking for a deeper understanding of the Java? programming language so that you can write code that is clearer, more correct");
+		existBook.setPrice(40f);
+		existBook.setIsbn("0321356683");
+		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Date publishDate = dateFormat.parse("05/28/2008");
+		existBook.setPublishDate(publishDate);
+		
+		String imagePath = "C:\\Users\\kuei\\Desktop\\github\\BookStore\\dummy-data-books\\books\\Effective Java.jpg";
+		
+		byte[] imageBytes = Files.readAllBytes(Paths.get(imagePath));
+		existBook.setImage(imageBytes);
+		
+		Book updatedBook = bookDao.update(existBook);
+		
+		assertEquals(updatedBook.getTitle(), "Effective Java (3nd Edition)");
+	}
 
 	@Test
 	public void testCreateBook() throws ParseException, IOException {
