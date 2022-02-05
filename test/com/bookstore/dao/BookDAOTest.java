@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -118,6 +119,37 @@ public class BookDAOTest extends BaseDAOTest {
 	public void testGetBookSuccess() {
 		Integer bookId = 37;
 		Book book = bookDao.get(bookId);
+		
+		assertNotNull(book);
+	}
+	
+	@Test
+	public void testListAll() {
+		List<Book> listBooks = bookDao.listAll();
+		
+		for(Book aBook : listBooks) {
+			System.out.println(aBook.getTitle() + " - " + aBook.getAuthor());
+		}
+		
+		assertFalse(listBooks.isEmpty());
+	}
+	
+	@Test
+	public void testFindByTitleNotExist() {
+		String title = "Thinkin in Java";
+		Book book = bookDao.findByTitle(title);
+		
+		assertNull(book);
+	}
+	
+
+	@Test
+	public void testFindByTitleExist() {
+		String title = "Effective Java (2nd Edition)";
+		Book book = bookDao.findByTitle(title);
+		
+		System.out.println(book.getAuthor());
+		System.out.println(book.getPrice());
 		
 		assertNotNull(book);
 	}
