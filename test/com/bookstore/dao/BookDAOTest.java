@@ -106,6 +106,21 @@ public class BookDAOTest extends BaseDAOTest {
 		assertTrue(true);
 	}
 
+	@Test
+	public void testGetBookFail() {
+		Integer bookId = 99;
+		Book book = bookDao.get(bookId);
+		
+		assertNull(book);
+	}
+	
+	@Test
+	public void testGetBookSuccess() {
+		Integer bookId = 37;
+		Book book = bookDao.get(bookId);
+		
+		assertNotNull(book);
+	}
 }
 
 
