@@ -52,8 +52,7 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return super.countWithNamedQuery("Book.countAll");
 	}
 
 }
