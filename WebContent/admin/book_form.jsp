@@ -8,8 +8,10 @@
             <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
             <title>Create New Book</title>
             <link rel="stylesheet" href="../css/style.css">
+            <link rel="stylesheet" href="../css/jquery-ui.min.css">
             <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
             <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+            <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
         </head>
 
         <body>
@@ -93,6 +95,8 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
+                $('#publishDate').datepicker();
+
                 $("#userForm").validate({
                     rules: {
                         email: {
