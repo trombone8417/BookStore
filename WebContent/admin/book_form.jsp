@@ -66,7 +66,10 @@
                     </tr>
                     <tr>
                         <td align="right">Book Image:</td>
-                        <td align="left"><input type="file" id="bookImage" name="bookImage" size="20" /></td>
+                        <td align="left">
+                            <input type="file" id="bookImage" name="bookImage" size="20" /><br/>
+                            <img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px;" />
+                        </td>
                     </tr>
                     <tr>
                         <td align="right">Price:</td>
@@ -97,6 +100,10 @@
             $(document).ready(function() {
                 $('#publishDate').datepicker();
 
+                $('#bookImage').change(function() {
+                    showImageThumbnail(this);
+                })
+
                 $("#userForm").validate({
                     rules: {
                         email: {
@@ -121,6 +128,18 @@
                     history.go(-1);
                 })
             })
+
+            function showImageThumbnail(fileInput) {
+                var file = fileInput.files[0];
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#thumbnail').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
         </script>
 
         </html>
