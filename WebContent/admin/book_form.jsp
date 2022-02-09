@@ -104,23 +104,27 @@
                     showImageThumbnail(this);
                 })
 
-                $("#userForm").validate({
+                $("#bookForm").validate({
                     rules: {
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        fullname: "required",
-                        password: "required"
+                        category: "required",
+                        title: "required",
+                        author: "required",
+                        isbn: "required",
+                        publishDate: "required",
+                        bookImage: "required",
+                        price: "required",
+                        description: "required"
                     },
 
                     messages: {
-                        email: {
-                            required: "Please enter email",
-                            email: "Please enter an valid email address"
-                        },
-                        fullname: "Please enter full name",
-                        password: "Please enter password"
+                        category: "Please select a category for the book",
+                        title: "Please enter title of the book",
+                        author: "Please enter author of the book",
+                        isbn: "Please enter ISBN of the book",
+                        publishDate: "Please enter publish date of the book",
+                        bookImage: "Please choose an image of the book",
+                        price: "Please enter price of the book",
+                        description: "Please enter description of the book"
                     }
                 })
 
