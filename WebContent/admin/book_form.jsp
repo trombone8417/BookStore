@@ -30,8 +30,8 @@
 
             <div align="center">
                 <c:if test="${book != null}">
-                    <form action="update_book" method="post" id="bookForm">
-                        <input type="hidden" name="userId" value="${user.userId}" />
+                    <form action="update_book" method="post" id="bookForm" enctype="multipart/form-data">
+                        <input type="hidden" name="bookId" value="${book.bookId}" />
                 </c:if>
                 <c:if test="${book == null}">
                     <form action="create_book" method="post" id="bookForm" enctype="multipart/form-data">
@@ -43,7 +43,14 @@
                         <td>
                             <select name="category">
 								<c:forEach items="${listCategory }" var="category">
-									<option value="${category.categoryId}">${category.name}</option>
+									<c:if test="${category.categoryId eq book.category.categoryId }">
+										<option value="${category.categoryId}" selected>
+									</c:if>
+									<c:if test="${category.categoryId ne book.category.categoryId }">
+										<option value="${category.categoryId}">
+									</c:if>
+									${category.name}
+										</option>
 								</c:forEach>
 							</select>
                         </td>
@@ -68,7 +75,7 @@
                         <td align="right">Book Image:</td>
                         <td align="left">
                             <input type="file" id="bookImage" name="bookImage" size="20" /><br/>
-                            <img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px;" />
+                            <img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px;" src="data:image/jpg;base64,${book.base64Image}" />
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +85,7 @@
                     <tr>
                         <td align="right">Description:</td>
                         <td align="left">
-                            <textarea name="description" id="description" cols="50" rows="5"></textarea>
+                            <textarea name="description" id="description" cols="50" rows="5">${book.description}</textarea>
                         </td>
                     </tr>
                     <tr>

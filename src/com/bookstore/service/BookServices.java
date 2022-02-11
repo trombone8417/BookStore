@@ -122,4 +122,18 @@ public class BookServices {
 		
 	}
 
+	public void editBook() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		Book book = bookDAO.get(bookId);
+		List<Category> listCategory = categoryDAO.listAll();
+		
+		request.setAttribute("book", book);
+		request.setAttribute("listCategory", listCategory);
+		
+		String editPage = "book_form.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+		
+	}
+
 }
