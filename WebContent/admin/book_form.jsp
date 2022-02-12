@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="BIG5"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
         <html>
 
@@ -69,7 +70,8 @@
                     </tr>
                     <tr>
                         <td align="right">Publish Date:</td>
-                        <td align="left"><input type="text" id="publishDate" name="publishDate" size="20" value="${book.publishDate}" /></td>
+                        <td align="left"><input type="text" id="publishDate" name="publishDate" size="20" 
+                        	value="<fmt:formatDate pattern='MM/dd/yyyy' value='${book.publishDate}' />" /></td>
                     </tr>
                     <tr>
                         <td align="right">Book Image:</td>
@@ -118,7 +120,11 @@
                         author: "required",
                         isbn: "required",
                         publishDate: "required",
+                        
+                        <c:if test="${book == null}">
                         bookImage: "required",
+                        </c:if>
+                        
                         price: "required",
                         description: "required"
                     },
