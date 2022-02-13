@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <title>Everygreen Books</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
