@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.naming.spi.DirStateFactory.Result;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.bookstore.entity.Book;
 
@@ -52,6 +53,14 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
 	public List<Book> listByCategory(int categoryId){
 		return super.findWithNamedQuery("Book.findByCategory", "catId", categoryId);
+	}
+	
+	public List<Book> listNewBooks() {
+		Query query = entityManager.createNamedQuery("Book.listNew");
+		query.setFirstResult(0);
+		query.setMaxResults(4);
+		
+		return query.getResultList();
 	}
 	
 	@Override
