@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.hibernate.annotations.FetchProfile.FetchOverride;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -176,6 +177,41 @@ public class BookDAOTest extends BaseDAOTest {
 			System.out.println(aBook.getTitle() + " - " + aBook.getPublishDate());
 		}
 		assertEquals(3, listNewBooks.size());
+	}
+
+	@Test
+	public void testSearchBookInDescription() {
+		String keyword = "This comprehensive guide shows";
+		List<Book> result = bookDao.search(keyword);
+		
+		for (Book aBook : result) {
+			System.out.println(aBook.getTitle());
+		}
+		
+		assertEquals(1, result.size());
+	}
+	
+	@Test
+	public void testSearchBookInAuthor() {
+		String keyword = "Bloch";
+		List<Book> result = bookDao.search(keyword);
+		
+		for (Book aBook : result) {
+			System.out.println(aBook.getTitle());
+		}
+		
+		assertEquals(1, result.size());
+	}
+	
+	public void testSearchBookInTitle() {
+		String keyword = "Java";
+		List<Book> result = bookDao.search(keyword);
+		
+		for (Book aBook : result) {
+			System.out.println(aBook.getTitle());
+		}
+		
+		assertEquals(3, result.size());
 	}
 }
 
