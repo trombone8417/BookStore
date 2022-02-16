@@ -7,12 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controllers.BaseServlet;
 import com.bookstore.service.UserServices;
 
 
 @WebServlet("/admin/delete_user")
-public class DeleteUserServlet extends BaseServlet {
+public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     public DeleteUserServlet() {
@@ -20,7 +19,7 @@ public class DeleteUserServlet extends BaseServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserServices userServices = new UserServices(entityManager, request, response);
+		UserServices userServices = new UserServices(request, response);
 		userServices.deleteUser();
 	}
 
