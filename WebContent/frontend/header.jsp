@@ -7,7 +7,7 @@
 	<div>
 		<form action="search" method="get">
 			<input type="text" name="keyword" size="50" />
-			<input type="button" value="Search">
+			<input type="submit" value="Search">
 		
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="login">Sign In</a> |
