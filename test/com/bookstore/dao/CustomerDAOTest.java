@@ -27,7 +27,7 @@ public class CustomerDAOTest {
 	public void testCreateCustomer() {
 		Customer customer = new Customer();
 		customer.setEmail("tom@gmail.com");
-		customer.setFullname("tom@gmail.com");
+		customer.setFullname("tom");
 		customer.setCity("New York");
 		customer.setCountry("United States");
 		customer.setAddress("100 North Avenue");
