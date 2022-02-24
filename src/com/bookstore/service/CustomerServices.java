@@ -12,6 +12,7 @@ import com.bookstore.dao.CustomerDAO;
 import com.bookstore.entity.Customer;
 
 public class CustomerServices {
+	private CustomerDAO customerDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
@@ -19,10 +20,10 @@ public class CustomerServices {
 		super();
 		this.request = request;
 		this.response = response;
+		this.customerDAO = new CustomerDAO();
 	}
 	
 	public void listCustomers() throws ServletException, IOException {
-		CustomerDAO customerDAO = new CustomerDAO();
 		List<Customer> listCustomer = customerDAO.listAll();
 		
 		request.setAttribute("listCustomer", listCustomer);
@@ -31,6 +32,11 @@ public class CustomerServices {
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
 		requestDispatcher.forward(request, response);
+	}
+
+	public void createCustomer() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

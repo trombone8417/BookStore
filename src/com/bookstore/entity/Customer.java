@@ -25,6 +25,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "customer", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @NamedQueries({
 	@NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c ORDER BY c.registerDate DESC"),
+	@NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
 	@NamedQuery(name = "Customer.countAll", query = "SELECT COUNT(c.email) FROM Customer c")
 })
 public class Customer implements java.io.Serializable {
