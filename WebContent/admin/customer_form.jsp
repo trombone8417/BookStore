@@ -29,11 +29,11 @@
 
             <div align="center">
                 <c:if test="${customer != null}">
-                    <form action="update_customer" method="post" id="customerForm" enctype="multipart/form-data">
+                    <form action="update_customer" method="post" id="customerForm">
                         <input type="hidden" name="bookId" value="${customer.customerId}" />
                 </c:if>
                 <c:if test="${customer == null}">
-                    <form action="create_customer" method="post" id="customerForm" enctype="multipart/form-data">
+                    <form action="create_customer" method="post" id="customerForm">
                 </c:if>
 
                 <table class="form">

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.service.CustomerServices;
 
-@WebServlet("/create_customer")
+@WebServlet("/admin/create_customer")
 public class CreateCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
