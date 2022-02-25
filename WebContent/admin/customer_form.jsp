@@ -30,7 +30,7 @@
             <div align="center">
                 <c:if test="${customer != null}">
                     <form action="update_customer" method="post" id="customerForm">
-                        <input type="hidden" name="bookId" value="${customer.customerId}" />
+                        <input type="hidden" name="customerId" value="${customer.customerId}" />
                 </c:if>
                 <c:if test="${customer == null}">
                     <form action="create_customer" method="post" id="customerForm">
@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td align="right">Full Name:</td>
-                        <td align="left"><input type="text" id="fullName" name="fullName" size="45" value="${customer.fullName}" /></td>
+                        <td align="left"><input type="text" id="fullName" name="fullName" size="45" value="${customer.fullname}" /></td>
                     </tr>
                     <tr>
                         <td align="right">Password:</td>
@@ -67,7 +67,7 @@
                     </tr>
                     <tr>
                         <td align="right">Zip Code:</td>
-                        <td align="left"><input type="text" id="zipCode" name="zipCode" size="45" value="${customer.zipCode}" /></td>
+                        <td align="left"><input type="text" id="zipCode" name="zipCode" size="45" value="${customer.zipcode}" /></td>
                     </tr>
                     <tr>
                         <td align="right">Country:</td>
