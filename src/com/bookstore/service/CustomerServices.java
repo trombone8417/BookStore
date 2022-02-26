@@ -127,4 +127,12 @@ public class CustomerServices {
 		listCustomers(message);
 	}
 
+	public void deleteCustomer() throws ServletException, IOException {
+		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		customerDAO.delete(customerId);
+		
+		String message = "The customer has been deleted successfully.";
+		listCustomers(message);
+	}
+
 }

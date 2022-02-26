@@ -10,7 +10,6 @@
                 <title>Manage Customers - Evergreen Bookstore Administration </title>
                 <link rel="stylesheet" href="../css/style.css">
                 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-                <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
             </head>
 
             <body>
@@ -65,9 +64,9 @@
                 $(document).ready(function() {
                     $(".deleteLink").each(function() {
                         $(this).on("click", function() {
-                            bookId = $(this).attr("id");
-                            if (confirm('Are You sure you want to delete the user with ID ' + bookId + ' ?')) {
-                                window.location = 'delete_book?id=' + bookId;
+                        	customerId = $(this).attr("id");
+                            if (confirm('Are You sure you want to delete the customer with ID ' + customerId + ' ?')) {
+                                window.location = 'delete_customer?id=' + customerId;
                             }
                         })
                     })
