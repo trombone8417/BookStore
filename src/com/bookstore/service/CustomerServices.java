@@ -106,10 +106,11 @@ public class CustomerServices {
 			
 			customerDAO.create(newCustomer);
 			
-			message = "You have registered successfully! Thank you.";
+			message = "You have registered successfully! Thank you.<br/>"
+					+"<a href='login'>Click here</a> to login";
 		}
 		
-		String messagePage = "message.jsp";
+		String messagePage = "frontend/message.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(messagePage);
 		request.setAttribute("message", message);
 		requestDispatcher.forward(request, response);
