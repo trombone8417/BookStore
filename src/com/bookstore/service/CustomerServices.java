@@ -168,11 +168,23 @@ public class CustomerServices {
 			showLogin();
 		} else {
 			request.getSession().setAttribute("loggedCustomer", customer);
-			
-			String profilePage = "frontend/customer_profile.jsp";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(profilePage);
-			dispatcher.forward(request, response);
+			showCustomerProfile();
 		}
+	}
+	
+	public void showCustomerProfile() throws ServletException, IOException {
+		String profilePage = "frontend/customer_profile.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(profilePage);
+		dispatcher.forward(request, response);
 	}
 
 }
+
+
+
+
+
+
+
+
+
