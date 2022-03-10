@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.entity.Review;
 import com.bookstore.service.ReviewServices;
 
-@WebServlet("/admin/list_review")
-public class ListReviewServlet extends HttpServlet {
+@WebServlet("/admin/delete_review")
+public class DeleteReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ListReviewServlet() {
+    public DeleteReviewServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewServices reviewServices = new ReviewServices(request, response);
-		reviewServices.listAllReview();
+		reviewServices.deleteReview();
 	}
 
 }

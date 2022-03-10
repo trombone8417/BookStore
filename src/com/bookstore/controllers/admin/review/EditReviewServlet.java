@@ -1,4 +1,4 @@
-package com.bookstore.controllers.frontend.review;
+package com.bookstore.controllers.admin.review;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

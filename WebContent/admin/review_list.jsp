@@ -60,9 +60,9 @@
 $(document).ready(function(){
 	$(".deleteLink").each(function(){
 		$(this).on("click", function(){
-			categoryId = $(this).attr("id");
-			if (confirm('Are You sure you want to delete the category with ID ' + categoryId + ' ?')){
-				window.location = 'delete_category?id=' + categoryId;
+			reviewId = $(this).attr("id");
+			if (confirm('Are You sure you want to delete the review with ID ' + reviewId + ' ?')){
+				window.location = 'delete_review?id=' + reviewId;
 			}
 		})
 	})
