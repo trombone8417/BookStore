@@ -213,7 +213,25 @@ public class Book implements java.io.Serializable {
 	public void setBase64Image(String base64Image) {
 		this.base64Image = base64Image;
 	}
-
+	
+	@Transient
+	public float getAverageRating() {
+		float averageRating = 0.0f;
+		float sum = 0.0f;
+		
+		if (reviews.isEmpty()) {
+			return 0.0f;
+		}
+		
+		for (Review review : reviews) {
+			sum += review.getRating();
+		}
+	
+		averageRating = sum / reviews.size();
+		
+		return averageRating;
+	}			
+				
 	@Override
 	public int hashCode() {
 		final int prime = 31;
