@@ -58,5 +58,60 @@ public class BookRatingTest {
 		
 		assertEquals(4.0, averageRating, 0.0);
 	}
+	
+	@Test
+	public void testRatingString1() {
+		float averageRating = 0.0f;
+		Book book = new Book();
+		String actual = book.getRatingString(averageRating);
+		
+		String expected = "off,off,off,off,off";
+		
+		assertEquals(expected, actual);
+	}
 
+
+	@Test
+	public void testRatingString2() {
+		float averageRating = 5.0f;
+		Book book = new Book();
+		String actual = book.getRatingString(averageRating);
+		
+		String expected = "on,on,on,on,on";
+		
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testRatingString3() {
+		float averageRating = 3.0f;
+		Book book = new Book();
+		String actual = book.getRatingString(averageRating);
+		
+		String expected = "on,on,on,off,off";
+		
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testRatingString4() {
+		float averageRating = 4.5f;
+		Book book = new Book();
+		String actual = book.getRatingString(averageRating);
+		
+		String expected = "on,on,on,on,half";
+		
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testRatingString5() {
+		float averageRating = 3.6f;
+		Book book = new Book();
+		String actual = book.getRatingString(averageRating);
+		
+		String expected = "on,on,on,half,off";
+		
+		assertEquals(expected, actual);
+	}
 }
