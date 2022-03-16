@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="BIG5"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
 
@@ -27,6 +28,7 @@
             </td>
             <td valign="top" align="left" height="10%">
             	<jsp:directive.include file="book_rating.jsp" />
+            	<a href="#reviews">${fn:length(book.reviews)} Reviews</a>
             </td>
             <td valign="top" rowspan="2" width="20%">
             	<h2>$${book.price}</h2>
@@ -42,9 +44,38 @@
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
-        	<td><h2>Customer Reviews</h2></td>
+        	<td><h2><a id="reviews">Customer Reviews</a></h2></td>
         	<td colspan="2" align="center">
         		<button>Write a Customer Review</button>
+        	</td>
+        </tr>
+        
+        <tr>
+        	<td colspan="3" align="left">
+        		<table class="normal">
+        			<c:forEach items="${book.reviews}" var="review">
+        				<tr>
+        					<td>
+        						<c:forTokens items="${review.stars}" delims="," var="star">
+									<c:if test="${star eq 'on'}">
+										<img src="images/rating_on.png">
+									</c:if>
+									<c:if test="${star eq 'off'}">
+										<img src="images/rating_off.png">
+									</c:if>
+								</c:forTokens>
+									- <b>${review.headline}</b>
+        					</td>
+        				</tr>
+        				<tr>
+        					<td>
+        						by ${review.customer.fullname} on ${review.reviewTime}
+        					</td>
+        				</tr>
+        				<tr><td><i>${review.comment}</i></td></tr>
+        				<tr><td>&nbsp;</td></tr>
+        			</c:forEach>
+        		</table>
         	</td>
         </tr>
         
