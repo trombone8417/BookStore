@@ -97,5 +97,26 @@ public class ReviewDAOTest {
 		System.out.println("Total Reviews: " + totalReviews);
 		assertTrue(totalReviews > 0);
 	}
+	
+	@Test
+	public void testFindByCustomerAndBookNotFound() {
+		Integer customerId = 100;
+		Integer bookId = 99;
+		
+		Review result = reviewDAO.findByCustomerAndBook(customerId, bookId);
+		
+		assertNull(result);
+	}
+	
+
+	@Test
+	public void testFindByCustomerAndBookFound() {
+		Integer customerId = 12;
+		Integer bookId = 37;
+		
+		Review result = reviewDAO.findByCustomerAndBook(customerId, bookId);
+		
+		assertNotNull(result);
+	}
 
 }
