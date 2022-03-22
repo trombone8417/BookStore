@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Book;
+import com.bookstore.entity.Customer;
 import com.bookstore.entity.Review;
 
 public class ReviewServices {
@@ -93,6 +94,32 @@ public class ReviewServices {
 		
 		String targetPage = "frontend/review_form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
+		dispatcher.forward(request, response);
+	}
+
+
+	public void submitReview() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
+		Integer rating = Integer.parseInt(request.getParameter("rating"));
+		String headline = request.getParameter("headline");
+		String comment = request.getParameter("comment");
+		
+		Review newReview = new Review();
+		newReview.setHeadline(headline);
+		newReview.setComment(comment);
+		newReview.setRating(rating);
+		
+		Book book = new Book();
+		book.setBookId(bookId);
+		newReview.setBook(book);
+		
+		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+		newReview.setCustomer(customer);
+		
+		reviewDAO.create(newReview);
+		
+		String messagePage = "frontend/review_done.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(messagePage);
 		dispatcher.forward(request, response);
 	}
 }
