@@ -90,7 +90,7 @@ public class ReviewServices {
 		BookDAO bookDao = new BookDAO();
 		Book book = bookDao.get(bookId);
 		
-		request.setAttribute("book", book);
+		request.getSession().setAttribute("book", book);
 		
 		String targetPage = "frontend/review_form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
