@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.ReviewDAO;
@@ -90,9 +91,20 @@ public class ReviewServices {
 		BookDAO bookDao = new BookDAO();
 		Book book = bookDao.get(bookId);
 		
-		request.getSession().setAttribute("book", book);
+		HttpSession session = request.getSession();
+		session.setAttribute("book", book);
+		
+		Customer customer = (Customer) session.getAttribute("loggedCustomer");
+		
+		Review existReview = reviewDAO.findByCustomerAndBook(customer.getCustomerId(), bookId);
 		
 		String targetPage = "frontend/review_form.jsp";
+		
+		if (existReview != null) {
+			request.setAttribute("review", existReview);
+			targetPage = "frontend/review_info.jsp";
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
 		dispatcher.forward(request, response);
 	}
