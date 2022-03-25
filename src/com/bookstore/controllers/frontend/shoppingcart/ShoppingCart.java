@@ -55,6 +55,10 @@ public class ShoppingCart {
 		cart.clear();
 	}
 	
+	public int getTotalItems() {
+		return cart.size();
+	}
+	
 	public Map<Book, Integer> getItems(){
 		return this.cart;
 	}
