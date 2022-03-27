@@ -35,7 +35,7 @@
             	<h2>$${book.price}</h2>
             	<br/>
             	<br/>
-            	<button type="submit">Add to Cart</button>
+            	<button id="buttonAddToCart">Add to Cart</button>
             </td>
         </tr>
         <tr>
@@ -89,6 +89,10 @@
         $(document).ready(function(){
     		$("#buttonWriteReview").click(function() {
                 window.location = 'write_review?book_id=' + ${book.bookId};
+            })
+            
+            $("#buttonAddToCart").click(function() {
+                window.location = 'add_to_cart?book_id=' + ${book.bookId};
             })
     	})
         </script>

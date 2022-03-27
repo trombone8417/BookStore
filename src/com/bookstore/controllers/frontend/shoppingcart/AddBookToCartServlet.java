@@ -1,8 +1,8 @@
 package com.bookstore.controllers.frontend.shoppingcart;
 
-import java.io.IOException;
+import static org.hamcrest.CoreMatchers.instanceOf;
 
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,26 +12,35 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.BookDAO;
 import com.bookstore.entity.Book;
 
-@WebServlet("/view_cart")
-public class ViewCartServlet extends HttpServlet {
+@WebServlet("/add_to_cart")
+public class AddBookToCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ViewCartServlet() {
+    public AddBookToCartServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("book_id"));
 		
 		Object cartObject = request.getSession().getAttribute("cart");
 		
-		if (cartObject == null) {
-			ShoppingCart shoppingCart = new ShoppingCart();
+		ShoppingCart shoppingCart = null;
+		
+		if (cartObject != null && cartObject instanceof ShoppingCart) {
+			shoppingCart = (ShoppingCart) cartObject;
+		} else {
+			shoppingCart = new ShoppingCart();
 			request.getSession().setAttribute("cart", shoppingCart);
 		}
 		
-		String cartPage = "frontend/shopping_cart.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(cartPage);
-		dispatcher.forward(request, response);
+		BookDAO bookDAO = new BookDAO();
+		Book book = bookDAO.get(bookId);
+		
+		shoppingCart.addItem(book);
+		
+		String cartPage = request.getContextPath().concat("/view_cart");
+		response.sendRedirect(cartPage);
 	}
 
 }
