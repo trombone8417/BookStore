@@ -57,7 +57,7 @@
 								<td>${item.value}</td>
 								<td><fmt:formatNumber value="${item.key.price}" type="currency" /></td>
 								<td><fmt:formatNumber value="${item.value * item.key.price}" type="currency" /></td>
-								<td><a href="">Remove</a></td>
+								<td><a href="remove_from_cart?book_id=${item.key.bookId}">Remove</a></td>
 							</tr>
 							</c:forEach>
 							
