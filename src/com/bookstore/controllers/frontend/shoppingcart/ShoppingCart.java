@@ -1,5 +1,7 @@
 package com.bookstore.controllers.frontend.shoppingcart;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -45,6 +47,14 @@ public class ShoppingCart {
 		}
 		
 		return total;
+	}
+	
+	public void updateCart(int[] bookIds, int[] quantities) {
+		for(int i = 0; i<bookIds.length; i++) {
+			Book key = new Book(bookIds[i]);
+			Integer value = quantities[i];
+			cart.put(key, value);
+		}
 	}
 	
 	public void removeItem(Book book) {
