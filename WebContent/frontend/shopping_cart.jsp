@@ -76,9 +76,11 @@
 					</div>
 					<div>
 						<table class="normal">
+							<tr><td>&nbsp;</td></tr>
 							<tr>
 								<td></td>
 								<td><button type="submit">Update</button></td>
+								<td><input type="button" id="clearCart" value="Clear Cart" /></td>
 								<td><a href="${pageContext.request.contextPath}/">Continue Shopping</a></td>
 								<td><a href="">Checkout</a></td>
 							</tr>
@@ -93,6 +95,10 @@
     </body>
     <script type="text/javascript">
         $(document).ready(function() {
+        	$("#clearCart").click(function(){
+        		window.location = 'clear_cart';
+        	})
+        	
             $("#cartForm").validate({
                 rules: {
                 	<c:forEach items="${cart.items}" var="item" varStatus="status">
