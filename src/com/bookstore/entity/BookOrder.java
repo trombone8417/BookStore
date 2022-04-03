@@ -1,9 +1,11 @@
 package com.bookstore.entity;
-// Generated 2022/1/15 ¤U¤È 05:25:47 by Hibernate Tools 5.2.10.Final
+// Generated 2022/1/15 ï¿½Uï¿½ï¿½ 05:25:47 by Hibernate Tools 5.2.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -150,7 +152,7 @@ public class BookOrder implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bookOrder")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bookOrder", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<OrderDetail> getOrderDetails() {
 		return this.orderDetails;
 	}

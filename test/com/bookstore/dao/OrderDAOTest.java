@@ -28,6 +28,44 @@ public class OrderDAOTest {
 	public static void tearDownAfterClass() throws Exception {
 		orderDAO.close();
 	}
+	
+	@Test
+	public void testCreateBookOrder2() {
+		BookOrder order = new BookOrder();
+		Customer customer = new Customer();
+		customer.setCustomerId(12);
+		
+		order.setCustomer(customer);
+		order.setRecipientName("Nam Ha Minh");
+		order.setRecipientPhone("123456789");
+		order.setShippingAddress("123 South Street, New York, USA");
+		
+		Set<OrderDetail> orderDetails = new HashSet<>();
+		OrderDetail orderDetail1 = new OrderDetail();
+		
+		Book book1 = new Book(37);
+		orderDetail1.setBook(book1);
+		orderDetail1.setQuantity(2);
+		orderDetail1.setSubtotal(50.5f);
+		orderDetail1.setBookOrder(order);
+		
+		orderDetails.add(orderDetail1);
+
+		Book book2 = new Book(38);
+		OrderDetail orderDetail2 = new OrderDetail();
+		orderDetail2.setBook(book2);
+		orderDetail2.setQuantity(1);
+		orderDetail2.setSubtotal(40.5f);
+		orderDetail2.setBookOrder(order);
+		
+		orderDetails.add(orderDetail2);
+		
+		order.setOrderDetails(orderDetails);
+		
+		orderDAO.create(order);
+		
+		assertTrue(order.getOrderId() > 0 && order.getOrderDetails().size() == 2);
+	}
 
 	@Test
 	public void testCreateBookOrder() {
@@ -47,14 +85,15 @@ public class OrderDAOTest {
 		orderDetail.setBook(book);
 		orderDetail.setQuantity(2);
 		orderDetail.setSubtotal(60.5f);
+		orderDetail.setBookOrder(order);
 		
 		orderDetails.add(orderDetail);
 		
 		order.setOrderDetails(orderDetails);
 		
-		BookOrder savedOrder = orderDAO.create(order);
+		orderDAO.create(order);
 		
-		assertNotNull(savedOrder != null && savedOrder.getOrderDetails().size() > 0);
+		assertTrue(order.getOrderId() > 0);
 	}
 
 	@Test
