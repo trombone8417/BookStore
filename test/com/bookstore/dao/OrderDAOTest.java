@@ -103,7 +103,16 @@ public class OrderDAOTest {
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		Integer orderId = 24;
+		BookOrder order = orderDAO.get(orderId);
+		System.out.println(order.getRecipientName());
+		System.out.println(order.getRecipientPhone());
+		System.out.println(order.getShippingAddress());
+		System.out.println(order.getStatus());
+		System.out.println(order.getTotal());
+		System.out.println(order.getPaymentMethod());
+		
+		assertEquals(1, order.getOrderDetails().size());
 	}
 
 	@Test
