@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,6 +26,9 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "book_order", catalog = "bookstoredb")
+@NamedQueries({
+	@NamedQuery(name = "BookOrder.findAll", query = "SELECT bo FROM BookOrder bo ORDER BY bo.orderDate DESC")
+})
 public class BookOrder implements java.io.Serializable {
 
 	private int orderId;
@@ -78,7 +83,7 @@ public class BookOrder implements java.io.Serializable {
 		this.orderId = orderId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_id", nullable = false)
 	public Customer getCustomer() {
 		return this.customer;
@@ -152,7 +157,7 @@ public class BookOrder implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bookOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "bookOrder", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<OrderDetail> getOrderDetails() {
 		return this.orderDetails;
 	}
