@@ -16,8 +16,8 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 	}
 	
 	@Override
-	public BookOrder update(BookOrder t) {
-		return null;
+	public BookOrder update(BookOrder order) {
+		return super.update(order);
 	}
 	
 	@Override
