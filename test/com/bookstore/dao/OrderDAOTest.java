@@ -169,8 +169,13 @@ public class OrderDAOTest {
 	}
 
 	@Test
-	public void testDeleteObject() {
-		fail("Not yet implemented");
+	public void testDeleteOrder() {
+		int orderId = 27;
+		orderDAO.delete(orderId);
+		
+		BookOrder order = orderDAO.get(orderId);
+		
+		assertNull(order);
 	}
 
 	@Test
@@ -193,7 +198,8 @@ public class OrderDAOTest {
 
 	@Test
 	public void testCount() {
-		fail("Not yet implemented");
+		long totalOrders = orderDAO.count();
+		assertEquals(6, totalOrders);
 	}
 
 }
