@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.bookstore.entity.BookOrder;
+import com.bookstore.entity.Customer;
 
 public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder> {
 
@@ -39,6 +40,8 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 		return super.countWithNamedQuery("BookOrder.countAll");
 	}
 
-	
+	public List<BookOrder> listByCustomer(Integer customerId) {
+		return super.findWithNamedQuery("BookOrder.findByCustomer", "customerId", customerId);
+	}
 
 }
