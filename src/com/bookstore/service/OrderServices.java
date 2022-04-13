@@ -127,6 +127,18 @@ public class OrderServices {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(historyPage);
 		dispatcher.forward(request, response);
 	}
+
+	public void showOrderDetailForCustomer() throws ServletException, IOException {
+		int orderId = Integer.parseInt(request.getParameter("id"));
+		
+		BookOrder order = orderDAO.get(orderId);
+		request.setAttribute("order", order);
+		
+		String detailPage = "frontend/order_detail.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(detailPage);
+		dispatcher.forward(request, response);
+		
+	}
 		
 }
 
