@@ -131,7 +131,10 @@ public class OrderServices {
 	public void showOrderDetailForCustomer() throws ServletException, IOException {
 		int orderId = Integer.parseInt(request.getParameter("id"));
 		
-		BookOrder order = orderDAO.get(orderId);
+		HttpSession session = request.getSession();
+		Customer customer = (Customer) session.getAttribute("loggedCustomer");
+		
+		BookOrder order = orderDAO.get(orderId, customer.getCustomerId());
 		request.setAttribute("order", order);
 		
 		String detailPage = "frontend/order_detail.jsp";

@@ -15,6 +15,13 @@
         <h2 class="pageheading">Your Order ID: ${order.orderId}</h2>
     </div>
 
+	<c:if test="${order == null}">
+		<div align="center">
+			<h2 class="pageheading">Sorry, you are not authorized to view this order</h2>
+		</div>
+	</c:if>
+
+	<c:if test="${order != null}">
     <div align="center">
       <h2>Order Overview:</h2>
       <table>
@@ -93,6 +100,7 @@
 			</tr>
 		</table>
 	</div>
+	</c:if>
     <jsp:directive.include file="footer.jsp" />
 </body>
 </html>
