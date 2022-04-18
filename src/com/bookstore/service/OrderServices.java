@@ -145,10 +145,18 @@ public class OrderServices {
 
 	public void showEditOrderForm() throws ServletException, IOException {
 		Integer orderId = Integer.parseInt(request.getParameter("id"));
-		BookOrder order = orderDAO.get(orderId);
 
 		HttpSession session = request.getSession();
-		session.setAttribute("order", order);
+		Object isPendingBook = session.getAttribute("NewBookPendingToAddToOrder");
+		
+		if(isPendingBook == null) {
+			BookOrder order = orderDAO.get(orderId);
+			session.setAttribute("order", order);
+		} else {
+			session.removeAttribute("NewBookPendingToAddToOrder");
+		}
+		
+		
 		
 		String editPage = "order_form.jsp";
 		
