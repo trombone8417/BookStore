@@ -9,6 +9,7 @@
 <title>Edit Details - Evergreen Bookstore Administration </title>
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
     <jsp:directive.include file="header.jsp" />
@@ -87,7 +88,8 @@
 					<td>${orderDetail.book.author}</td>
 					<td><fmt:formatNumber value="${orderDetail.book.price}" type="currency" /></td>
 					<td>
-						<input type="text" name="quantity" value="${orderDetail.quantity}" size="5" />
+						<input type="hidden" name="bookId" value="${orderDetail.book.bookId}" />
+						<input type="text" name="quantity${status.index + 1}" value="${orderDetail.quantity}" size="5" />
 					</td>
 					<td><fmt:formatNumber value="${orderDetail.subtotal}" type="currency" /></td>
 					<td><a href="remove_book_from_order?id=${orderDetail.book.bookId}">Remove</a></td>
@@ -131,6 +133,34 @@
 				'width=' + width + ', height=' + height +', top='+ top +', left=' + left);
 	}
 
+	$(document).ready(function(){
+		$("#orderForm").validate({
+			rules:{
+				recipientName: "required",
+				recipientPhone: "required",
+				shippingAddress: "required",
+				<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
+		        	quantity${status.index + 1}: {
+		                required: true, number:true, min:1
+		            },
+		        </c:forEach>
+			},
+			
+			messages:{
+				recipientName: "Please enter recipient name",
+				recipientPhone: "Please enter recipient phone",
+				shippingAddress: "Please enter recipient address",
+				<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
+		        	quantity${status.index + 1}: {
+		                required: "Please enter quantity",
+		                number:"Quantity must be a number", 
+		                min:"Quantity must be a greater than 0"
+		            },
+	            </c:forEach>
+			}
+		})
+	})
+	
 </script>
 
 
