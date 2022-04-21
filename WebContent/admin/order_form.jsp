@@ -86,7 +86,10 @@
 					<td>${status.index + 1}</td>
 					<td>${orderDetail.book.title}</td>
 					<td>${orderDetail.book.author}</td>
-					<td><fmt:formatNumber value="${orderDetail.book.price}" type="currency" /></td>
+					<td>
+						<input type="hidden" name="price" value="${orderDetail.book.price}" />
+						<fmt:formatNumber value="${orderDetail.book.price}" type="currency" />
+					</td>
 					<td>
 						<input type="hidden" name="bookId" value="${orderDetail.book.bookId}" />
 						<input type="text" name="quantity${status.index + 1}" value="${orderDetail.quantity}" size="5" />
