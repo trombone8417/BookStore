@@ -59,11 +59,11 @@
       		<td><b>Order Status: </b></td>
       		<td>
       			<select name="orderStatus">
-      				<option value="Processing">Processing</option>
-      				<option value="Shipping">Shipping</option>
-      				<option value="Delivered">Delivered</option>
-      				<option value="Completed">Completed</option>
-      				<option value="Cancelled">Cancelled</option>
+      				<option value="Processing" <c:if test="${order.status eq 'Processing'}">selected='selected'</c:if>>Processing</option>
+      				<option value="Shipping" <c:if test="${order.status eq 'Shipping'}">selected='selected'</c:if>>Shipping</option>
+      				<option value="Delivered" <c:if test="${order.status eq 'Delivered'}">selected='selected'</c:if>>Delivered</option>
+      				<option value="Completed" <c:if test="${order.status eq 'Completed'}">selected='selected'</c:if>>Completed</option>
+      				<option value="Cancelled" <c:if test="${order.status eq 'Cancelled'}">selected='selected'</c:if>>Cancelled</option>
       			</select>
      		</td>
       	</tr>

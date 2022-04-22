@@ -197,7 +197,7 @@ public class OrderServices {
 		String[] arrayQuantity = new String[arrayBookId.length];
 		
 		for(int i = 1; i <= arrayQuantity.length; i++) {
-			arrayQuantity[i]= request.getParameter("quantity" + i); 
+			arrayQuantity[i-1]= request.getParameter("quantity" + i); 
 		}
 		
 		Set<OrderDetail> orderDetails = order.getOrderDetails();
@@ -218,6 +218,8 @@ public class OrderServices {
 			orderDetail.setSubtotal(subtotal);
 			orderDetail.setBookOrder(order);
 			
+			orderDetails.add(orderDetail);
+			
 			totalAmount += subtotal;
 		}
 		
@@ -227,7 +229,7 @@ public class OrderServices {
 		
 		String message = "The order " + order.getOrderId() + " has been update successfully";
 		
-		listAllOrder();
+		listAllOrder(message);
 	}
 		
 }
