@@ -38,7 +38,7 @@ CREATE TABLE `book` (
   UNIQUE KEY `title_UNIQUE` (`title`),
   KEY `category_fk_idx` (`category_id`),
   CONSTRAINT `category_fk` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `book_order` (
   UNIQUE KEY `order_id_UNIQUE` (`order_id`),
   KEY `customer_fk_2_idx` (`customer_id`),
   CONSTRAINT `customer_fk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,6 +81,7 @@ CREATE TABLE `book_order` (
 
 LOCK TABLES `book_order` WRITE;
 /*!40000 ALTER TABLE `book_order` DISABLE KEYS */;
+INSERT INTO `book_order` VALUES (23,12,'2022-03-29 21:27:47','New Shipping Address','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(24,12,'2022-03-29 21:27:59','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(25,12,'2022-03-29 21:31:03','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(26,12,'2022-03-29 21:32:19','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(28,12,'2022-04-04 19:04:31','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(29,12,'2022-04-08 19:01:32','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(30,14,'2022-04-10 15:50:26','tttttttttttttttttttttttttttttt, taipei, null, taiwan','nam','0912345678','Cash On Delivery',77.66,'Processing'),(31,14,'2022-04-10 15:54:33','tttttt, taipei, null, taiwan','nam','0912345678','Cash On Delivery',358.71,'Completed'),(32,14,'2022-04-23 20:57:53','tttttttttttttttttttttttttttttt, taipei, null, taiwan','nam','0912345678','Cash On Delivery',125.73,'Processing');
 /*!40000 ALTER TABLE `book_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +131,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +140,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (12,'tom@gmail.com','tom','100 North Avenue','New York','United States','18001900','100000','secret','2022-02-20 11:16:30'),(14,'nam@codejava.net','nam','tttttttttttttttttttttttttttttt','taipei','taiwan','0912345678','600','123456','2022-02-23 20:22:25');
+INSERT INTO `customer` VALUES (12,'tom@gmail.com','tom','100 North Avenue','New York','United','18001900','100000','tom','2022-02-20 11:16:30'),(14,'nam@codejava.net','nam','tttttttttttttttttttttttttttttt','taipei','taiwan','0912345678','600','mysecret','2022-02-23 20:22:25'),(15,'test@yahoo.com','test','sdfsdfdsfdsfsd','cc2','taiwan','0321654987','477','test','2022-02-28 18:32:40');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,6 +169,7 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
+INSERT INTO `order_detail` VALUES (28,37,2,60.5),(29,37,2,50.5),(29,38,1,40.5),(30,37,1,48.87),(30,39,1,28.79),(31,38,1,27.99),(31,37,5,244.35),(31,39,3,86.37),(32,37,2,97.74),(32,38,1,27.99);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +194,7 @@ CREATE TABLE `review` (
   KEY `customer_fk_idx` (`customer_id`),
   CONSTRAINT `book_fk` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
   CONSTRAINT `customer_fk` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,6 +203,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (16,37,12,5,'This is a very good book zzz!','I have just read this book. Very good yyyyyy.','2022-03-06 15:36:08'),(18,37,12,3,'This is a very good book zzz!','This is a very good book zzz!This is a very good book zzz!This is a very good book zzz!This is a very good book zzz!','2022-03-21 19:35:47'),(19,37,12,2,'This is a very bad book zzz!','This is a very bad book zzz!This is a very bad book zzz!This is a very bad book zzz!This is a very bad book zzz!This is a very bad book zzz!','2022-03-21 19:41:32'),(20,38,12,4,'This is a Java Generics and Collections book zzz!','This is a Java Generics and Collections book zzz!This is a Java Generics and Collections book zzz!This is a Java Generics and Collections book zzz!This is a Java Generics and Collections book zzz!','2022-03-22 19:57:09');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +230,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (19,'nam@codejava.net','mysecret','Nam Ha Minh'),(20,'sophia@robotics.com','robotic','Miss Sophia'),(21,'you@gmail.com','power','Mr President'),(22,'david@gmail.com','1234567890','David Beckham'),(23,'tommy@gmail.com','abcdefghij','Tommy Timothy'),(28,'trombone8417@yahoo.com','123456789','kuei'),(29,'muhammad.evran13@gmail.com','muhammad2020','evran13');
+INSERT INTO `users` VALUES (19,'nam@codejava.net','mysecret','Nam Ha Minh'),(20,'sophia@robotics.com','robotic','Miss Sophia'),(21,'you@gmail.com','power','Mr President'),(22,'david@gmail.com','1234567890','David Beckham'),(23,'tommy@gmail.com','abcdefghij','Tommy Timothy'),(29,'muhammad.evran13@gmail.com','muhammad2020','evran13');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -240,4 +243,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-24 19:13:03
+-- Dump completed on 2022-04-23 21:08:46
