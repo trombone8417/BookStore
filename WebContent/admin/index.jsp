@@ -78,6 +78,11 @@
     <div align="center">
         <hr width="60%" />
         <h2 class="pageheading">Statistics:</h2>
+        Total Users: ${totalUsers} &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Books: ${totalBooks} &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Customers: ${totalCustomers} &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Reviews: ${totalReviews} &nbsp;&nbsp;&nbsp;&nbsp;
+        Total Orders: ${totalOrders} &nbsp;&nbsp;&nbsp;&nbsp;
         <hr width="60%" />
     </div>
 
