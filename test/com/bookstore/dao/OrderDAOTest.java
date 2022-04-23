@@ -237,5 +237,12 @@ public class OrderDAOTest {
 		long totalOrders = orderDAO.count();
 		assertEquals(6, totalOrders);
 	}
+	
+	@Test
+	public void listMostRecentSales() {
+		List<BookOrder> recentOrders = orderDAO.listMostRecentSales();
+		
+		assertEquals(3, recentOrders.size());
+	}
 
 }
