@@ -231,6 +231,17 @@ public class BookDAOTest {
 		
 		assertEquals(3, topBestSellingBooks.size());
 	}
+	
+	@Test
+	public void testListMostFavoredBooks() {
+		List<Book> topFavoredBooks = bookDao.listMostFavoredBooks();
+		
+		for (Book book : topFavoredBooks) {
+			System.out.println(book.getTitle());
+		}
+		
+		assertEquals(1, topFavoredBooks.size());
+	}
 }
 
 
