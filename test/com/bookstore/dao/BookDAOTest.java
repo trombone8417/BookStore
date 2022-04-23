@@ -220,6 +220,17 @@ public class BookDAOTest {
 		
 		assertTrue(numOfBooks == 1);
 	}
+	
+	@Test
+	public void testListBestSellingBooks() {
+		List<Book> topBestSellingBooks = bookDao.listBestSellingBooks();
+		
+		for (Book book : topBestSellingBooks) {
+			System.out.println(book.getTitle());
+		}
+		
+		assertEquals(3, topBestSellingBooks.size());
+	}
 }
 
 
