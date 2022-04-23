@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.dao.OrderDAO;
+import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.BookOrder;
+import com.bookstore.entity.Review;
 
 
 @WebServlet("/admin/")
@@ -29,10 +31,14 @@ public class AdminHomeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		OrderDAO orderDao = new OrderDAO();
-		List<BookOrder> listMostRecentSales = orderDao.listMostRecentSales();
+		OrderDAO orderDAO = new OrderDAO();
+		ReviewDAO reviewDAO = new ReviewDAO();
+		
+		List<BookOrder> listMostRecentSales = orderDAO.listMostRecentSales();
+		List<Review> listMostRecentReviews = reviewDAO.listMostRecent();
 		
 		request.setAttribute("listMostRecentSales", listMostRecentSales);
+		request.setAttribute("listMostRecentReviews", listMostRecentReviews);
 		
 		String homepage = "index.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(homepage);
