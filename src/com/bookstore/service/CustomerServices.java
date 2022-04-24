@@ -100,7 +100,7 @@ public class CustomerServices {
 			customer.setEmail(email);
 		}
 		
-		customer.setFullname(fullName);
+		customer.setFirstname(fullName);
 		
 		if (password != null && !password.equals("")) {
 			customer.setPassword(password);

@@ -120,9 +120,12 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
-  `fullname` varchar(30) NOT NULL,
-  `address` varchar(128) NOT NULL,
+  `firstname` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
+  `address_line1` varchar(128) NOT NULL,
+  `address_line2` varchar(128) NOT NULL,
   `city` varchar(32) NOT NULL,
+  `state` varchar(45) NOT NULL,
   `country` varchar(64) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `zipcode` varchar(24) NOT NULL,
@@ -140,7 +143,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (12,'tom@gmail.com','tom','100 North Avenue','New York','United','18001900','100000','tom','2022-02-20 11:16:30'),(14,'nam@codejava.net','nam','tttttttttttttttttttttttttttttt','taipei','taiwan','0912345678','600','mysecret','2022-02-23 20:22:25'),(15,'test@yahoo.com','test','sdfsdfdsfdsfsd','cc2','taiwan','0321654987','477','test','2022-02-28 18:32:40');
+INSERT INTO `customer` VALUES (12,'tom@gmail.com','tom','tom2','100 North Avenue','Line 2','New York','New York','United','18001900','100000','tom','2022-02-20 11:16:30'),(14,'nam@codejava.net','nam','nam2','tttttttttttttttttttttttttttttt','Line 2','taipei','taipei','taiwan','0912345678','600','mysecret','2022-02-23 20:22:25'),(15,'test@yahoo.com','test','test2','sdfsdfdsfdsfsd','Line 2','cc2','cc2','taiwan','0321654987','477','test','2022-02-28 18:32:40');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,4 +246,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-23 21:08:46
+-- Dump completed on 2022-04-24  8:37:43

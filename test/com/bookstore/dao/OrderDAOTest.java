@@ -203,7 +203,7 @@ public class OrderDAOTest {
 		List<BookOrder> listOrders = orderDAO.listAll();
 		
 		for (BookOrder order : listOrders) {
-			System.out.println(order.getOrderId() + " - " + order.getCustomer().getFullname()
+			System.out.println(order.getOrderId() + " - " + order.getCustomer().getFirstname()
 					+ " - " + order.getTotal() + " - " + order.getStatus());
 			for (OrderDetail detail : order.getOrderDetails()) {
 				Book book = detail.getBook();
