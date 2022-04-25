@@ -26,11 +26,14 @@ public class CustomerDAOTest {
 	@Test
 	public void testCreateCustomer() {
 		Customer customer = new Customer();
-		customer.setEmail("tom@gmail.com");
+		customer.setEmail("tom1@gmail.com");
 		customer.setFirstname("tom");
+		customer.setLastname("tom0225");
 		customer.setCity("New York");
+		customer.setState("New York");
 		customer.setCountry("United States");
-		customer.setAddress("100 North Avenue");
+		customer.setAddressLine1("100 North Avenue");
+		customer.setAddressLine2("100 North Avenue");
 		customer.setPassword("secret");
 		customer.setPhone("18001900");
 		customer.setZipcode("100000");
@@ -42,7 +45,7 @@ public class CustomerDAOTest {
 
 	@Test
 	public void testGet() {
-		Integer customerId = 11;
+		Integer customerId = 17;
 		Customer customer = customerDao.get(customerId);
 		
 		assertNotNull(customer);
@@ -50,20 +53,20 @@ public class CustomerDAOTest {
 	
 	@Test
 	public void testUpdateCustomer() {
-		Customer customer = customerDao.get(11);
-		String fullName = "Tom Tom Tom";
-		customer.setFirstname(fullName);
+		Customer customer = customerDao.get(17);
+		String firstname = "Tom Tom Tom";
+		customer.setFirstname(firstname);
 		
 		Customer updatedCustomer  = customerDao.update(customer);
 		
-		assertTrue(updatedCustomer.getFirstname().equals(fullName));
+		assertTrue(updatedCustomer.getFirstname().equals(firstname));
 	}
 
 	@Test
-	public void testDeleteObject() {
-		Integer customerId = 11;
+	public void testDeleteCustomer() {
+		Integer customerId = 17;
 		customerDao.delete(customerId);
-		Customer customer = customerDao.get(11);
+		Customer customer = customerDao.get(17);
 		
 		assertNull(customer);
 	}
@@ -83,7 +86,7 @@ public class CustomerDAOTest {
 	public void testCount() {
 		long totalCustomers = customerDao.count();
 		
-		assertEquals(1, totalCustomers);
+		assertEquals(4, totalCustomers);
 	}
 	
 	@Test
