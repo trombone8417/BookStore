@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -102,6 +103,11 @@ public class Customer implements java.io.Serializable {
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+	}
+	
+	@Transient
+	public String getFullname() {
+		return this.firstname + " " + this.lastname;
 	}
 
 	@Column(name = "lastname", nullable = false, length = 30)
