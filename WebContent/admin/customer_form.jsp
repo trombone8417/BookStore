@@ -83,7 +83,13 @@
                     </tr>
                     <tr>
                         <td align="right">Country:</td>
-                        <td align="left"><input type="text" id="country" name="country" size="45" value="${customer.country}" /></td>
+                        <td align="left">
+                        	<select name="country" id="country">
+                        		<c:forEach items="${mapCountries}" var="country">
+                        			<option value="${country.value}">${country.key}</option>
+                        		</c:forEach>
+                        	</select>
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
