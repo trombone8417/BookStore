@@ -16,7 +16,7 @@
                 <jsp:directive.include file="header.jsp" />
                 <div align="center">
                     <h2 class="pageheading">Customers Management</h2>
-                    <h3><a href="customer_form.jsp">Create new Customer</a></h3>
+                    <h3><a href="new_customer">Create new Customer</a></h3>
                 </div>
 
                 <c:if test="${message != null}">
@@ -46,7 +46,7 @@
                                 <td>${customer.firstname}</td>
                                 <td>${customer.lastname}</td>
                                 <td>${customer.city}</td>
-                                <td>${customer.country}</td>
+                                <td>${customer.countryName}</td>
                                 <td>${customer.registerDate}</td>
                                 <td>
                                     <a href="edit_customer?id=${customer.customerId}">Edit</a> &nbsp;
