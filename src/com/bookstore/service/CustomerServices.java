@@ -130,6 +130,8 @@ public class CustomerServices {
 		
 		request.setAttribute("customer", customer);
 		
+		generateCountryList();
+		
 		String editPage = "customer_form.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
 		requestDispatcher.forward(request, response);
@@ -221,6 +223,13 @@ public class CustomerServices {
 	}
 
 	public void newCustomer() throws ServletException, IOException {
+		generateCountryList();
+		
+		String customerForm = "customer_form.jsp";
+		request.getRequestDispatcher(customerForm).forward(request, response);
+	}
+
+	private void generateCountryList() {
 		String[] countryCodes = Locale.getISOCountries();
 		
 		Map<String, String> mapCountries = new TreeMap<>();
@@ -234,9 +243,6 @@ public class CustomerServices {
 		}
 		
 		request.setAttribute("mapCountries", mapCountries);
-		
-		String customerForm = "customer_form.jsp";
-		request.getRequestDispatcher(customerForm).forward(request, response);
 	}
 
 }
