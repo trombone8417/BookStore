@@ -28,7 +28,7 @@
         	</tr>
         	<tr>
         		<td><b>Address</b></td>
-        		<td>${loggedCustomer.address}</td>
+        		<td>${loggedCustomer.addressLine1}</td>
         	</tr>
         	<tr>
         		<td><b>City</b></td>
