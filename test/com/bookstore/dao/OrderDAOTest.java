@@ -38,9 +38,9 @@ public class OrderDAOTest {
 		customer.setCustomerId(12);
 		
 		order.setCustomer(customer);
-		order.setRecipientName("Nam Ha Minh");
+		order.setFirstname("Nam Ha Minh");
 		order.setRecipientPhone("123456789");
-		order.setShippingAddress("123 South Street, New York, USA");
+		order.setAddressLine1("123 South Street, New York, USA");
 		
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail1 = new OrderDetail();
@@ -76,9 +76,9 @@ public class OrderDAOTest {
 		customer.setCustomerId(12);
 		
 		order.setCustomer(customer);
-		order.setRecipientName("Nam Ha Minh");
+		order.setFirstname("Nam Ha Minh");
 		order.setRecipientPhone("123456789");
-		order.setShippingAddress("123 South Street, New York, USA");
+		order.setAddressLine1("123 South Street, New York, USA");
 		
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail = new OrderDetail();
@@ -107,13 +107,13 @@ public class OrderDAOTest {
 	public void testUpdateBookOrderShippingAddress() {
 		Integer orderId = 23;
 		BookOrder order = orderDAO.get(orderId);
-		order.setShippingAddress("New Shipping Address");
+		order.setAddressLine1("New Shipping Address");
 		
 		orderDAO.update(order);
 		
 		BookOrder updateOrder = orderDAO.get(orderId);
 		
-		assertEquals(order.getShippingAddress(), updateOrder.getShippingAddress());
+		assertEquals(order.getAddressLine1(), updateOrder.getAddressLine1());
 	}
 
 	@Test
@@ -158,9 +158,9 @@ public class OrderDAOTest {
 	public void testGet() {
 		Integer orderId = 24;
 		BookOrder order = orderDAO.get(orderId);
-		System.out.println(order.getRecipientName());
+		System.out.println(order.getFirstname());
 		System.out.println(order.getRecipientPhone());
-		System.out.println(order.getShippingAddress());
+		System.out.println(order.getAddressLine1());
 		System.out.println(order.getStatus());
 		System.out.println(order.getTotal());
 		System.out.println(order.getPaymentMethod());

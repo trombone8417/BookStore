@@ -62,10 +62,19 @@ CREATE TABLE `book_order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `order_date` datetime NOT NULL,
-  `shipping_address` varchar(256) NOT NULL,
-  `recipient_name` varchar(30) NOT NULL,
-  `recipient_phone` varchar(15) NOT NULL,
+  `r_address_line1` varchar(256) NOT NULL,
+  `r_address_line2` varchar(256) DEFAULT NULL,
+  `r_firstname` varchar(30) NOT NULL,
+  `r_lastname` varchar(30) DEFAULT NULL,
+  `r_phone` varchar(15) NOT NULL,
+  `r_country` varchar(4) DEFAULT NULL,
+  `r_city` varchar(32) DEFAULT NULL,
+  `r_state` varchar(45) DEFAULT NULL,
+  `r_zipcode` varchar(24) DEFAULT NULL,
   `payment_method` varchar(20) NOT NULL,
+  `shipping_fee` float DEFAULT NULL,
+  `tax` float DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
   `total` float NOT NULL,
   `status` varchar(20) NOT NULL,
   PRIMARY KEY (`order_id`),
@@ -81,7 +90,7 @@ CREATE TABLE `book_order` (
 
 LOCK TABLES `book_order` WRITE;
 /*!40000 ALTER TABLE `book_order` DISABLE KEYS */;
-INSERT INTO `book_order` VALUES (23,12,'2022-03-29 21:27:47','New Shipping Address','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(24,12,'2022-03-29 21:27:59','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(25,12,'2022-03-29 21:31:03','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(26,12,'2022-03-29 21:32:19','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(28,12,'2022-04-04 19:04:31','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(29,12,'2022-04-08 19:01:32','123 South Street, New York, USA','Nam Ha Minh','123456789','Cash on Delivery',0,'Processing'),(30,14,'2022-04-10 15:50:26','tttttttttttttttttttttttttttttt, taipei, null, taiwan','nam','0912345678','Cash On Delivery',77.66,'Processing'),(31,14,'2022-04-10 15:54:33','tttttt, taipei, null, taiwan','nam','0912345678','Cash On Delivery',358.71,'Completed'),(32,14,'2022-04-23 20:57:53','tttttttttttttttttttttttttttttt, taipei, null, taiwan','nam','0912345678','Cash On Delivery',125.73,'Processing');
+INSERT INTO `book_order` VALUES (23,12,'2022-03-29 21:27:47','New Shipping Address',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(24,12,'2022-03-29 21:27:59','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(25,12,'2022-03-29 21:31:03','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(26,12,'2022-03-29 21:32:19','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(28,12,'2022-04-04 19:04:31','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(29,12,'2022-04-08 19:01:32','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(30,14,'2022-04-10 15:50:26','tttttttttttttttttttttttttttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678',NULL,NULL,NULL,NULL,'Cash On Delivery',NULL,NULL,NULL,77.66,'Processing'),(31,14,'2022-04-10 15:54:33','tttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678',NULL,NULL,NULL,NULL,'Cash On Delivery',NULL,NULL,NULL,358.71,'Completed'),(32,14,'2022-04-23 20:57:53','tttttttttttttttttttttttttttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678',NULL,NULL,NULL,NULL,'Cash On Delivery',NULL,NULL,NULL,125.73,'Processing');
 /*!40000 ALTER TABLE `book_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +143,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +152,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (12,'tom@gmail.com','tom','tom2','100 North Avenue','Line 2','New York','New York','United','18001900','100000','tom','2022-02-20 11:16:30'),(14,'nam@codejava.net','nam','nam2','tttttttttttttttttttttttttttttt','Line 2','taipei','taipei','taiwan','0912345678','600','mysecret','2022-02-23 20:22:25'),(15,'test@yahoo.com','test','test2','sdfsdfdsfdsfsd','Line 2','cc2','cc2','taiwan','0321654987','477','test','2022-02-28 18:32:40');
+INSERT INTO `customer` VALUES (12,'tom@gmail.com','tom','tom2','100 North Avenue','Line 2','New York','New York','United','18001900','100000','tom','2022-02-20 11:16:30'),(14,'nam@codejava.net','nam','nam2','tttttttttttttttttttttttttttttt','Line 2','taipei','taipei','taiwan','0912345678','600','mysecret','2022-02-23 20:22:25'),(15,'test@yahoo.com','test','test2','sdfsdfdsfdsfsd','Line 2','cc2','cc2','taiwan','0321654987','477','test','2022-02-28 18:32:40'),(18,'nam222@codejava.net','test','test','eeeeeeeeeee','rrrrrrrrrrrr','tet','ww','IS','0912355555','543','123','2022-04-25 21:01:17');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-24  8:37:43
+-- Dump completed on 2022-05-02  8:09:40
