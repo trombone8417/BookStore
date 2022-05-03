@@ -81,7 +81,7 @@ public class OrderServices {
 				
 		BookOrder order = new BookOrder();
 		order.setFirstname(recipientName);
-		order.setRecipientPhone(recipientPhone);
+		order.setPhone(recipientPhone);
 		order.setAddressLine1(shippingAddress);
 		order.setPaymentMethod(paymentMethod);
 
@@ -187,7 +187,7 @@ public class OrderServices {
 		String orderStatus = request.getParameter("orderStatus");
 		
 		order.setFirstname(recipientName);
-		order.setRecipientPhone(recipientPhone);
+		order.setPhone(recipientPhone);
 		order.setAddressLine1(shippingAddress);
 		order.setPaymentMethod(paymentMethod);
 		order.setStatus(orderStatus);

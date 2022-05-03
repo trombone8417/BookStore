@@ -64,7 +64,7 @@ public class BookOrder implements java.io.Serializable {
 		this.addressLine2 = addressLine2;
 	}
 
-	@Column(name = "lastname", nullable = false, length = 30)
+	@Column(name = "r_lastname", nullable = false, length = 30)
 	public String getLastname() {
 		return lastname;
 	}
@@ -218,22 +218,13 @@ public class BookOrder implements java.io.Serializable {
 		this.addressLine1 = addressLine1;
 	}
 
-	@Column(name = "firstname", nullable = false, length = 30)
+	@Column(name = "r_firstname", nullable = false, length = 30)
 	public String getFirstname() {
 		return this.firstname;
 	}
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
-	}
-
-	@Column(name = "recipient_phone", nullable = false, length = 15)
-	public String getRecipientPhone() {
-		return this.phone;
-	}
-
-	public void setRecipientPhone(String recipientPhone) {
-		this.phone = recipientPhone;
 	}
 
 	@Column(name = "payment_method", nullable = false, length = 20)
