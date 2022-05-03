@@ -81,7 +81,7 @@ CREATE TABLE `book_order` (
   UNIQUE KEY `order_id_UNIQUE` (`order_id`),
   KEY `customer_fk_2_idx` (`customer_id`),
   CONSTRAINT `customer_fk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `book_order` (
 
 LOCK TABLES `book_order` WRITE;
 /*!40000 ALTER TABLE `book_order` DISABLE KEYS */;
-INSERT INTO `book_order` VALUES (23,12,'2022-03-29 21:27:47','New Shipping Address',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(24,12,'2022-03-29 21:27:59','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(25,12,'2022-03-29 21:31:03','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(26,12,'2022-03-29 21:32:19','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(28,12,'2022-04-04 19:04:31','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(29,12,'2022-04-08 19:01:32','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789',NULL,NULL,NULL,NULL,'Cash on Delivery',NULL,NULL,NULL,0,'Processing'),(30,14,'2022-04-10 15:50:26','tttttttttttttttttttttttttttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678',NULL,NULL,NULL,NULL,'Cash On Delivery',NULL,NULL,NULL,77.66,'Processing'),(31,14,'2022-04-10 15:54:33','tttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678',NULL,NULL,NULL,NULL,'Cash On Delivery',NULL,NULL,NULL,358.71,'Completed'),(32,14,'2022-04-23 20:57:53','tttttttttttttttttttttttttttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678',NULL,NULL,NULL,NULL,'Cash On Delivery',NULL,NULL,NULL,125.73,'Processing');
+INSERT INTO `book_order` VALUES (23,12,'2022-03-29 21:27:47','New Shipping Address',NULL,'Nam Ha Minh',NULL,'123456789','US',NULL,NULL,NULL,'Cash on Delivery',0,0,0,0,'Processing'),(24,12,'2022-03-29 21:27:59','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789','US',NULL,NULL,NULL,'Cash on Delivery',0,0,0,0,'Processing'),(25,12,'2022-03-29 21:31:03','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789','US',NULL,NULL,NULL,'Cash on Delivery',0,0,0,0,'Processing'),(26,12,'2022-03-29 21:32:19','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789','US',NULL,NULL,NULL,'Cash on Delivery',0,0,0,0,'Processing'),(28,12,'2022-04-04 19:04:31','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789','US',NULL,NULL,NULL,'Cash on Delivery',0,0,0,0,'Processing'),(29,12,'2022-04-08 19:01:32','123 South Street, New York, USA',NULL,'Nam Ha Minh',NULL,'123456789','US',NULL,NULL,NULL,'Cash on Delivery',0,0,0,0,'Processing'),(30,14,'2022-04-10 15:50:26','tttttttttttttttttttttttttttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678','US',NULL,NULL,NULL,'Cash On Delivery',0,0,0,77.66,'Processing'),(31,14,'2022-04-10 15:54:33','tttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678','US',NULL,NULL,NULL,'Cash On Delivery',0,0,0,358.71,'Completed'),(32,14,'2022-04-23 20:57:53','tttttttttttttttttttttttttttttt, taipei, null, taiwan',NULL,'nam',NULL,'0912345678','US',NULL,NULL,NULL,'Cash On Delivery',0,0,0,125.73,'Processing'),(33,12,'2022-05-02 09:56:19','123 South Street','Clifton Park','Nam','Ha Minh','123456789','US','New York','New York','123456','paypal',2,6.8,68,76.8,'Processing');
 /*!40000 ALTER TABLE `book_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-INSERT INTO `order_detail` VALUES (28,37,2,60.5),(29,37,2,50.5),(29,38,1,40.5),(30,37,1,48.87),(30,39,1,28.79),(31,38,1,27.99),(31,37,5,244.35),(31,39,3,86.37),(32,37,2,97.74),(32,38,1,27.99);
+INSERT INTO `order_detail` VALUES (28,37,2,60.5),(29,37,2,50.5),(29,38,1,40.5),(30,37,1,48.87),(30,39,1,28.79),(31,38,1,27.99),(31,37,5,244.35),(31,39,3,86.37),(32,37,2,97.74),(32,38,1,27.99),(33,37,3,120);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-02  8:09:40
+-- Dump completed on 2022-05-02 12:40:22
