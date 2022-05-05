@@ -36,22 +36,11 @@
       		<td>${order.orderDate}</td>
       	</tr>
       	<tr>
-      		<td><b>Recipient Name: </b></td>
-      		<td><input type="text" name="recipientName" value="${order.recipientName}" size="45" /></td>
-      	</tr>
-      	<tr>
-      		<td><b>Recipient Phone: </b></td>
-      		<td><input type="text" name="recipientPhone" value="${order.recipientPhone}" size="45" /></td>
-      	</tr>
-      	<tr>
-      		<td><b>Ship To: </b></td>
-      		<td><input type="text" name="shippingAddress" value="${order.shippingAddress}" size="45" /></td>
-      	</tr>
-      	<tr>
       		<td><b>Payment Method: </b></td>
       		<td>
       			<select name="paymentMethod">
-      				<option value="Cash On Delivery">Cash On Delivery</option>
+      				<option value="Cash On Delivery" <c:if test="${order.paymentMethod eq 'Cash On Delivery' }">selected='selected'</c:if>>Cash On Delivery</option>
+      				<option value="paypal" <c:if test="${order.paymentMethod eq 'paypal' }">selected='selected'</c:if>>PayPal or Credit card</option>
       			</select>
       		</td>
       	</tr>
@@ -67,6 +56,19 @@
       			</select>
      		</td>
       	</tr>
+      	<tr>
+      		<td><b>Recipient Name: </b></td>
+      		<td><input type="text" name="recipientName" value="${order.firstname}" size="45" /></td>
+      	</tr>
+      	<tr>
+      		<td><b>Recipient Phone: </b></td>
+      		<td><input type="text" name="recipientPhone" value="${order.phone}" size="45" /></td>
+      	</tr>
+      	<tr>
+      		<td><b>Ship To: </b></td>
+      		<td><input type="text" name="shippingAddress" value="${order.addressLine1}" size="45" /></td>
+      	</tr>
+      	
       </table>
     </div>
 	<div align="center">
