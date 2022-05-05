@@ -166,7 +166,7 @@ public class OrderServices {
 			session.removeAttribute("NewBookPendingToAddToOrder");
 		}
 		
-		
+		CommonUtility.generateCountryList(request);
 		
 		String editPage = "order_form.jsp";
 		

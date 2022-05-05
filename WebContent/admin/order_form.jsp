@@ -56,19 +56,51 @@
       			</select>
      		</td>
       	</tr>
+      	</table>
+      	<h2>Recipient Information</h2>
+      	<table>
       	<tr>
-      		<td><b>Recipient Name: </b></td>
-      		<td><input type="text" name="recipientName" value="${order.firstname}" size="45" /></td>
+      		<td><b>First Name: </b></td>
+      		<td><input type="text" name="firstname" id="firstname" value="${order.firstname}" size="45" /></td>
       	</tr>
       	<tr>
-      		<td><b>Recipient Phone: </b></td>
-      		<td><input type="text" name="recipientPhone" value="${order.phone}" size="45" /></td>
+      		<td><b>Last Name: </b></td>
+      		<td><input type="text" name="lastname" id="lastname" value="${order.firstname}" size="45" /></td>
       	</tr>
       	<tr>
-      		<td><b>Ship To: </b></td>
-      		<td><input type="text" name="shippingAddress" value="${order.addressLine1}" size="45" /></td>
+      		<td><b>Phone: </b></td>
+      		<td><input type="text" name="phone" id="phone" value="${order.phone}" size="45" /></td>
       	</tr>
-      	
+      	<tr>
+      		<td><b>Address Line 1: </b></td>
+      		<td><input type="text" name="address1" id="address1" value="${order.addressLine1}" size="45" /></td>
+      	</tr>
+      	<tr>
+      		<td><b>Address Line 2: </b></td>
+      		<td><input type="text" name="address2" id="address2" value="${order.addressLine2}" size="45" /></td>
+      	</tr>
+      	<tr>
+      		<td><b>City: </b></td>
+      		<td><input type="text" name="city" id="city" value="${order.city}" size="45" /></td>
+      	</tr>
+      	<tr>
+      		<td><b>State: </b></td>
+      		<td><input type="text" name="state" id="state" value="${order.state}" size="45" /></td>
+      	</tr>
+      	<tr>
+      		<td><b>Zipcode: </b></td>
+      		<td><input type="text" name="zipcode" id="zipcode" value="${order.zipcode}" size="45" /></td>
+      	</tr>
+      	<tr>
+      		<td><b>Country: </b></td>
+      		<td>
+      		<select name="country" id="country">
+         		<c:forEach items="${mapCountries}" var="country">
+         			<option value="${country.value}" <c:if test='${order.country eq country.value}'>selected='selected'</c:if>>${country.key}</option>
+         		</c:forEach>
+         	</select>
+         	</td>
+      	</tr>
       </table>
     </div>
 	<div align="center">

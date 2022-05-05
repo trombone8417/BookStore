@@ -130,7 +130,7 @@ public class CustomerServices {
 		
 		request.setAttribute("customer", customer);
 		
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		
 		String editPage = "customer_form.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
@@ -209,7 +209,7 @@ public class CustomerServices {
 	}
 
 	public void showCustomerProfileEditForm() throws ServletException, IOException {
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		String profilePage = "frontend/edit_profile.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(profilePage);
 		dispatcher.forward(request, response);
@@ -224,30 +224,16 @@ public class CustomerServices {
 	}
 
 	public void newCustomer() throws ServletException, IOException {
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		
 		String customerForm = "customer_form.jsp";
 		request.getRequestDispatcher(customerForm).forward(request, response);
 	}
 
-	private void generateCountryList() {
-		String[] countryCodes = Locale.getISOCountries();
-		
-		Map<String, String> mapCountries = new TreeMap<>();
-		
-		for (String countryCode : countryCodes) {
-			Locale locale = new Locale("", countryCode);
-			String code = locale.getCountry();
-			String name = locale.getDisplayCountry();
-			
-			mapCountries.put(name, code);
-		}
-		
-		request.setAttribute("mapCountries", mapCountries);
-	}
+	
 	
 	public void showCustomerRegistrationForm() throws ServletException, IOException {
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		
 		String registerForm = "frontend/register_form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
