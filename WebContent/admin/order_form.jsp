@@ -133,14 +133,11 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="4" align="right">
-					<b><i>TOTAL:</i></b>
-				</td>
-				<td>
-					<b>${order.bookCopies}</b>
-				</td>
-				<td>
-					<b><fmt:formatNumber value="${order.total}" type="currency" /></b>
+				<td colspan="7" align="right">
+					<p>Subtotal: <fmt:formatNumber value="${order.subtotal}" type="currency" /></p>
+					<p>Tax: <input type="text" size="5" name="tax" id="tax" value="${order.tax}" /></p>
+					<p>Shipping Fee: <input type="text" size="5" name="shippingFee" id="shippingFee" value="${order.shippingFee}" /></p>
+					<p>TOTAL: <fmt:formatNumber value="${order.total}" type="currency" /></p>
 				</td>
 				<td></td>
 			</tr>
@@ -173,20 +170,35 @@
 	$(document).ready(function(){
 		$("#orderForm").validate({
 			rules:{
-				recipientName: "required",
-				recipientPhone: "required",
-				shippingAddress: "required",
+				firstname: "required",
+				lastname: "required",
+				phone: "required",
+				address1: "required",
+				address2: "required",
+				city: "required",
+				state: "required",
+				zipcode: "required",
+				country: "required",
 				<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 		        	quantity${status.index + 1}: {
 		                required: true, number:true, min:1
 		            },
 		        </c:forEach>
+		            
+		        shippingFee: {required: true, number: true, min: 0},
+		        tax: {required: true, number: true, min: 0}
 			},
 			
 			messages:{
-				recipientName: "Please enter recipient name",
-				recipientPhone: "Please enter recipient phone",
-				shippingAddress: "Please enter recipient address",
+				firstname: "Please enter first name",
+				lastname: "Please enter last name",
+				phone: "Please enter phone number",
+				address1: "Please enter address line 1",
+				address2: "Please enter address line 2",
+				city: "Please enter city",
+				state: "Please enter state",
+				zipcode: "Please enter zipcode",
+				country: "Please select country",
 				<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 		        	quantity${status.index + 1}: {
 		                required: "Please enter quantity",
@@ -194,6 +206,17 @@
 		                min:"Quantity must be a greater than 0"
 		            },
 	            </c:forEach>
+		        
+	            shippingFee: {
+	            	required: "Please enter shipping fee",
+	            	number: "Shipping fee must be a number",
+	            	min: "Shipping fee must be equal or greater than 0"
+	            },
+	            tax: {
+	            	required: "Please enter shipping tax",
+	            	number: "Tax fee must be a number",
+	            	min: "Tax fee must be equal or greater than 0"
+	            }
 			}
 		})
 	})
