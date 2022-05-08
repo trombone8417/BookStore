@@ -64,6 +64,21 @@ public class OrderServices {
 	}
 
 	public void showCheckoutForm() throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+		
+		// tax is 10% of subtotal
+		float tax = shoppingCart.getTotalAmount() * 0.1f;
+		
+		//shipping fee is 1.0USD per copy
+		float shippingFee = shoppingCart.getTotalAmount() * 1.0f;
+		
+		float total = shoppingCart.getTotalAmount() + tax + shippingFee;
+		
+		session.setAttribute("tax", tax);
+		session.setAttribute("shippingFee", shippingFee);
+		session.setAttribute("total", total);
+		
 		String checkOutPage = "frontend/checkout.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(checkOutPage);
 		dispatcher.forward(request, response);

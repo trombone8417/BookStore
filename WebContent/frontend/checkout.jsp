@@ -39,9 +39,6 @@
 								<th>Price</th>
 								<th>Quantity</th>
 								<th>Subtotal</th>
-								<th>
-									<a href=""><b>Clear Cart</b></a>
-								</th>
 							</tr>
 							<c:forEach items="${cart.items}" var="item" varStatus="status">
 							<tr>
@@ -62,17 +59,17 @@
 									<input type="text" name="quantity${status.index + 1}" value="${item.value}" size="5" readonly />
 								</td>
 								<td><fmt:formatNumber value="${item.value * item.key.price}" type="currency" /></td>
-								<td><a href="remove_from_cart?book_id=${item.key.bookId}">Remove</a></td>
 							</tr>
 							</c:forEach>
 							
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><b>${cart.totalQuantity} book(s)</b></td>
-								<td>Total:</td>
-								<td colspan="2"><b><fmt:formatNumber value="${cart.totalAmount}" type="currency" /></b></td>
+								<td colspan="7" align="right">
+									<p>Number of copies: ${cart.totalQuantity}</p>
+									<p>Subtotal: <fmt:formatNumber value="${cart.totalAmount}" type="currency" /></p>
+									<p>Tax: <fmt:formatNumber value="${tax}" type="currency" /></p>
+									<p>Shipping Fee: <fmt:formatNumber value="${shippingFee}" type="currency" /></p>
+									<p>TOTAL: <fmt:formatNumber value="${total}" type="currency" /></p>
+								</td>
 							</tr>
 						</table>
 						<h2>Your Shipping Information</h2>
