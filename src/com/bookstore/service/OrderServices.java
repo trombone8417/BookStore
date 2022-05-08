@@ -79,6 +79,8 @@ public class OrderServices {
 		session.setAttribute("shippingFee", shippingFee);
 		session.setAttribute("total", total);
 		
+		CommonUtility.generateCountryList(request);
+		
 		String checkOutPage = "frontend/checkout.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(checkOutPage);
 		dispatcher.forward(request, response);
