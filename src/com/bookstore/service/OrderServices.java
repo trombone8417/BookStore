@@ -87,19 +87,27 @@ public class OrderServices {
 	}
 
 	public void placeOrder() throws ServletException, IOException {
-		String recipientName = request.getParameter("recipientName");
-		String recipientPhone = request.getParameter("recipientPhone");
-		String address = request.getParameter("address");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String phone = request.getParameter("phone");
+		String address1 = request.getParameter("address1");
+		String address2 = request.getParameter("address2");
 		String city = request.getParameter("city");
+		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
 		String paymentMethod = request.getParameter("paymentMethod");
-		String shippingAddress = address + ", " + city + ", " + zipcode + ", "+ country;
 				
 		BookOrder order = new BookOrder();
-		order.setFirstname(recipientName);
-		order.setPhone(recipientPhone);
-		order.setAddressLine1(shippingAddress);
+		order.setFirstname(firstname);
+		order.setLastname(lastname);
+		order.setPhone(phone);
+		order.setAddressLine1(address1);
+		order.setAddressLine2(address2);
+		order.setCity(city);
+		order.setState(state);
+		order.setCountry(country);
+		order.setZipcode(zipcode);
 		order.setPaymentMethod(paymentMethod);
 
 		HttpSession session = request.getSession();
@@ -128,7 +136,15 @@ public class OrderServices {
 		}
 		
 		order.setOrderDetails(orderDetails);
-		order.setTotal(shoppingCart.getTotalAmount());
+		
+		float tax = (Float) session.getAttribute("tax");
+		float shippingFee = (Float) session.getAttribute("shippingFee");
+		float total = (Float) session.getAttribute("total");
+		
+		order.setSubtotal(shoppingCart.getTotalAmount());
+		order.setTax(tax);
+		order.setShippingFee(shippingFee);
+		order.setTotal(total);
 		
 		orderDAO.create(order);
 		

@@ -105,7 +105,7 @@
 								</tr>
 								<tr>
 									<td>Zip Code:</td>
-									<td><input type="text" name="zipCode" value="${loggedCustomer.zipcode}" /></td>
+									<td><input type="text" name="zipcode" value="${loggedCustomer.zipcode}" /></td>
 								</tr>
 								<tr>
 									<td>Country:</td>
