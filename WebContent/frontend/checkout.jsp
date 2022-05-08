@@ -88,7 +88,7 @@
 								</tr>
 								<tr>
 									<td>Street Address:</td>
-									<td><input type="text" name="address" value="${loggedCustomer.address}" /></td>
+									<td><input type="text" name="address" value="${loggedCustomer.addressLine1}" /></td>
 								</tr>
 								<tr>
 									<td>City:</td>
