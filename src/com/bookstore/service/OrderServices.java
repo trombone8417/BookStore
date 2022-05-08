@@ -87,6 +87,21 @@ public class OrderServices {
 	}
 
 	public void placeOrder() throws ServletException, IOException {
+		String paymentMethod = request.getParameter("paymentMethod");
+		BookOrder order = readOrderInfo();
+		
+		if (paymentMethod.equals("paypal")) {
+			PaymentServices paymentServices = new PaymentServices(request, response);
+			paymentServices.authorizePayment(order);
+		} else {
+			// Cash on Delivery
+			placeOrderCOD(order);
+		}
+		
+	}
+	
+	private BookOrder readOrderInfo() {
+		String paymentMethod = request.getParameter("paymentMethod");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String phone = request.getParameter("phone");
@@ -96,7 +111,6 @@ public class OrderServices {
 		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
-		String paymentMethod = request.getParameter("paymentMethod");
 				
 		BookOrder order = new BookOrder();
 		order.setFirstname(firstname);
@@ -146,8 +160,14 @@ public class OrderServices {
 		order.setShippingFee(shippingFee);
 		order.setTotal(total);
 		
-		orderDAO.create(order);
+		return order;
+	}
+
+	private void placeOrderCOD(BookOrder order) throws ServletException, IOException {
 		
+		
+		orderDAO.create(order);
+		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
 		shoppingCart.clear();
 		
 		String message = "Thank you. Your order has been received."
@@ -157,6 +177,7 @@ public class OrderServices {
 		String messagePage = "frontend/message.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(messagePage);
 		dispatcher.forward(request, response);
+		
 	}
 
 	public void listOrderByCustomer() throws ServletException, IOException {
