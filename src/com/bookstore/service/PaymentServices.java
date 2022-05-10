@@ -3,8 +3,11 @@ package com.bookstore.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.entity.Book;
 import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.Customer;
+import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Details;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.PayerInfo;
 import com.paypal.api.payments.RedirectUrls;
@@ -24,7 +27,22 @@ public class PaymentServices {
 	}
 	
 	public void authorizePayment(BookOrder order) {
-		//get payer information
+		Payer payer = getPayerInformation(order);
+		RedirectUrls redirectUrls = getRedirectURLs();
+		Amount amount = getAmountDetails(order);
+		
+		//shipping address (recipient info)
+		
+		//get transaction details
+		
+		// request payment
+		
+		// get approval link
+		
+		// redirect to Paypal's payment page
+	}
+	
+	private Payer getPayerInformation(BookOrder order) {
 		Payer payer = new Payer();
 		payer.setPaymentMethod("paypal");
 		
@@ -35,8 +53,11 @@ public class PaymentServices {
 		payerInfo.setLastName(customer.getLastname());
 		payerInfo.setEmail(customer.getEmail());
 		payer.setPayerInfo(payerInfo);
-		
-		//get redirect URLs
+				
+		return payer;
+	}
+	
+	private RedirectUrls getRedirectURLs() {
 		String requestURL = request.getRequestURI().toString();
 		String requestURI = request.getRequestURI();
 		String baseURL = requestURL.replace(requestURI, "").concat(request.getContextPath());
@@ -48,16 +69,20 @@ public class PaymentServices {
 		redirectUrls.setCancelUrl(cancelUrl);
 		redirectUrls.setReturnUrl(returnUrl);
 		
-		//get amount details
+		return redirectUrls;
+	}
+	
+	private Amount getAmountDetails(BookOrder order) {
+		Details details = new Details();
+		details.setShipping(String.valueOf(order.getShippingFee()));
+		details.setTax(String.valueOf(order.getTax()));
+		details.setSubtotal(String.valueOf(order.getSubtotal()));
 		
-		//shipping address (recipient info)
+		Amount amount = new Amount();
+		amount.setCurrency("USD");
+		amount.setDetails(details);
+		amount.setTotal(String.valueOf(order.getSubtotal()));
 		
-		//get transaction details
-		
-		// request payment
-		
-		// get approval link
-		
-		// redirect to Paypal's payment page
+		return amount;
 	}
 }
