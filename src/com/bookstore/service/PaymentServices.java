@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +17,7 @@ import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Details;
 import com.paypal.api.payments.Item;
 import com.paypal.api.payments.ItemList;
+import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.PayerInfo;
 import com.paypal.api.payments.Payment;
@@ -39,7 +41,7 @@ public class PaymentServices {
 		this.response = response;
 	}
 	
-	public void authorizePayment(BookOrder order) throws ServletException {
+	public void authorizePayment(BookOrder order) throws ServletException, IOException {
 		Payer payer = getPayerInformation(order);
 		RedirectUrls redirectUrls = getRedirectURLs();
 
@@ -59,6 +61,11 @@ public class PaymentServices {
 			Payment authorizePayment = requestPayment.create(apiContext);
 			System.out.println("====== AUTHORIZE PAYMENT: ======");
 			System.out.println(authorizePayment);
+			
+			String approvalURL = getApprovalURL(authorizePayment);
+			
+			response.sendRedirect(approvalURL);
+			
 		} catch (PayPalRESTException e) {
 			e.printStackTrace();
 			throw new ServletException("Error in authorizing payment.");
@@ -76,6 +83,21 @@ public class PaymentServices {
 		// redirect to Paypal's payment page
 	}
 	
+	private String getApprovalURL(Payment authorizePayment) {
+		String approvalURL = null;
+		
+		List<Links> links = authorizePayment.getLinks();
+		
+		for (Links link : links) {
+			if (link.getRel().equalsIgnoreCase("approval_url")) {
+				approvalURL = link.getHref();
+				break;
+			}
+		}
+		
+		return approvalURL;
+	}
+
 	private ShippingAddress getRecipientInformation(BookOrder order) {
 		ShippingAddress shippingAddress = new ShippingAddress();
 		String recipientName = order.getFirstname() + " " + order.getLastname();
