@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,9 +18,12 @@ import com.paypal.api.payments.Item;
 import com.paypal.api.payments.ItemList;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.PayerInfo;
+import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.ShippingAddress;
 import com.paypal.api.payments.Transaction;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
 
 public class PaymentServices {
 	private static final String CLIENT_ID = "";
@@ -35,10 +39,31 @@ public class PaymentServices {
 		this.response = response;
 	}
 	
-	public void authorizePayment(BookOrder order) {
+	public void authorizePayment(BookOrder order) throws ServletException {
 		Payer payer = getPayerInformation(order);
 		RedirectUrls redirectUrls = getRedirectURLs();
-		Amount amount = getAmountDetails(order);
+
+		List<Transaction> transactions = getTransactionInformation(order);
+		
+		Payment requestPayment = new Payment();
+		requestPayment.setPayer(payer)
+						.setRedirectUrls(redirectUrls)
+						.setIntent("authorize")
+						.setTransactions(transactions);
+
+		System.out.println("====== REQUEST PAYMENT: ======");
+		System.out.println(requestPayment);
+		
+		APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, mode);
+		try {
+			Payment authorizePayment = requestPayment.create(apiContext);
+			System.out.println("====== AUTHORIZE PAYMENT: ======");
+			System.out.println(authorizePayment);
+		} catch (PayPalRESTException e) {
+			e.printStackTrace();
+			throw new ServletException("Error in authorizing payment.");
+		}
+		
 		
 		//shipping address (recipient info)
 		
@@ -88,7 +113,7 @@ public class PaymentServices {
 			paypalItem.setCurrency("USD")
 						.setName(book.getTitle())
 						.setQuantity(String.valueOf(quantity))
-						.setPrice(String.valueOf(book.getPrice()));
+						.setPrice(String.format("%.2f",book.getPrice()));
 			paypalItems.add(paypalItem);
 		}
 		
@@ -125,6 +150,9 @@ public class PaymentServices {
 		String cancelUrl = baseURL.concat("/view_cart");
 		String returnUrl = baseURL.concat("/review_payment");
 		
+		System.out.println("Return URL: " + returnUrl);
+		System.out.println("Cancel URL: " + cancelUrl);
+		
 		redirectUrls.setCancelUrl(cancelUrl);
 		redirectUrls.setReturnUrl(returnUrl);
 		
@@ -133,14 +161,14 @@ public class PaymentServices {
 	
 	private Amount getAmountDetails(BookOrder order) {
 		Details details = new Details();
-		details.setShipping(String.valueOf(order.getShippingFee()));
-		details.setTax(String.valueOf(order.getTax()));
-		details.setSubtotal(String.valueOf(order.getSubtotal()));
+		details.setShipping(String.format("%.2f",order.getShippingFee()));
+		details.setTax(String.format("%.2f",order.getTax()));
+		details.setSubtotal(String.format("%.2f",order.getSubtotal()));
 		
 		Amount amount = new Amount();
 		amount.setCurrency("USD");
 		amount.setDetails(details);
-		amount.setTotal(String.valueOf(order.getSubtotal()));
+		amount.setTotal(String.format("%.2f",order.getTotal()));
 		
 		return amount;
 	}
