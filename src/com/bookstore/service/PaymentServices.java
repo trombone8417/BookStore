@@ -194,4 +194,27 @@ public class PaymentServices {
 		
 		return amount;
 	}
+
+	public void reviewPayment() throws ServletException {
+		String paymentId = request.getParameter("paymentId");
+		String payerId = request.getParameter("PayerID");
+		
+		if(paymentId == null || payerId == null) {
+			throw new ServletException("Error in displaying payment review");
+		}
+		
+		APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, mode);
+		
+		try {
+			Payment payment = Payment.get(apiContext, paymentId);
+			
+			String reviewPage = "frontend/review_payment.jsp";
+			request.getRequestDispatcher(reviewPage).forward(request, response);
+			
+		} catch (PayPalRESTException | IOException e) {
+			e.printStackTrace();
+			throw new ServletException("Error in getting payment details from Paypal.");
+		}
+		
+	}
 }
