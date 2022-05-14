@@ -21,6 +21,7 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.PayerInfo;
 import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.PaymentExecution;
 import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.ShippingAddress;
 import com.paypal.api.payments.Transaction;
@@ -216,7 +217,7 @@ public class PaymentServices {
 			request.setAttribute("recipient", shippingAddress);
 			request.setAttribute("transaction", transaction);
 			
-			String reviewPage = "frontend/review_payment.jsp";
+			String reviewPage = "frontend/review_payment.jsp?paymentId=" + paymentId + "&PayerID=" + payerId;
 			request.getRequestDispatcher(reviewPage).forward(request, response);
 			
 		} catch (PayPalRESTException | IOException e) {
@@ -225,4 +226,30 @@ public class PaymentServices {
 		}
 		
 	}
+
+	public Payment executePayment() throws PayPalRESTException {
+		String paymentId = request.getParameter("paymentId");
+		String payerId = request.getParameter("PayerID");
+		
+		PaymentExecution paymentExecution = new PaymentExecution();
+		paymentExecution.setPayerId(payerId);
+		
+		Payment payment = new Payment().setId(paymentId);
+		
+		APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, mode);
+		
+		return payment.execute(apiContext, paymentExecution);
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

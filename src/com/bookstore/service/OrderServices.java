@@ -21,6 +21,9 @@ import com.bookstore.entity.Book;
 import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.Customer;
 import com.bookstore.entity.OrderDetail;
+import com.paypal.api.payments.ItemList;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.ShippingAddress;
 
 public class OrderServices {
 	private OrderDAO orderDAO;
@@ -92,12 +95,43 @@ public class OrderServices {
 		
 		if (paymentMethod.equals("paypal")) {
 			PaymentServices paymentServices = new PaymentServices(request, response);
+			request.getSession().setAttribute("order4Paypal", order);
 			paymentServices.authorizePayment(order);
 		} else {
 			// Cash on Delivery
 			placeOrderCOD(order);
 		}
 		
+	}
+
+	public Integer placeOrderPaypal(Payment payment) {
+		BookOrder order = (BookOrder) request.getSession().getAttribute("order4Paypal");
+		ItemList itemList = payment.getTransactions().get(0).getItemList();
+		ShippingAddress shippingAddress = itemList.getShippingAddress();
+		String shippingPhoneNumber = itemList.getShippingPhoneNumber();
+		
+		String recipientName = shippingAddress.getRecipientName();
+		String[] names = recipientName.split(" ");
+		
+		order.setFirstname(names[0]);
+		order.setLastname(names[1]);
+		order.setAddressLine1(shippingAddress.getLine1());
+		order.setAddressLine2(shippingAddress.getLine2());
+		order.setCity(shippingAddress.getCity());
+		order.setState(shippingAddress.getState());
+		order.setCountry(shippingAddress.getCountryCode());
+		order.setPhone(shippingPhoneNumber);
+		
+		return saveOrder(order);
+	}
+		
+	private Integer saveOrder(BookOrder order) {
+		BookOrder savedOrder = orderDAO.create(order);
+		
+		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
+		shoppingCart.clear();
+		
+		return savedOrder.getOrderId();
 	}
 	
 	private BookOrder readOrderInfo() {
@@ -165,10 +199,7 @@ public class OrderServices {
 
 	private void placeOrderCOD(BookOrder order) throws ServletException, IOException {
 		
-		
-		orderDAO.create(order);
-		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
-		shoppingCart.clear();
+		saveOrder(order);
 		
 		String message = "Thank you. Your order has been received."
 				+ "We will deliver your books within a few days.";
@@ -315,7 +346,6 @@ public class OrderServices {
 		String message = "The order ID " + orderId + " has been deleted.";
 		listAllOrder(message);
 	}
-		
 }
 
 
