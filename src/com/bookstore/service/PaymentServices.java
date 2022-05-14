@@ -164,7 +164,7 @@ public class PaymentServices {
 	}
 	
 	private RedirectUrls getRedirectURLs() {
-		String requestURL = request.getRequestURI().toString();
+		String requestURL = request.getRequestURL().toString();
 		String requestURI = request.getRequestURI();
 		String baseURL = requestURL.replace(requestURI, "").concat(request.getContextPath());
 		
@@ -207,6 +207,14 @@ public class PaymentServices {
 		
 		try {
 			Payment payment = Payment.get(apiContext, paymentId);
+			
+			PayerInfo payerInfo = payment.getPayer().getPayerInfo();
+			Transaction transaction = payment.getTransactions().get(0);
+			ShippingAddress shippingAddress = transaction.getItemList().getShippingAddress();
+			
+			request.setAttribute("payer", payerInfo);
+			request.setAttribute("recipient", shippingAddress);
+			request.setAttribute("transaction", transaction);
 			
 			String reviewPage = "frontend/review_payment.jsp";
 			request.getRequestDispatcher(reviewPage).forward(request, response);
