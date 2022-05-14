@@ -47,6 +47,23 @@
 ![frontend_checkout_success](md-img/frontend_checkout_success.png)
 ###### 2-9. 購物車訂單明細
 ![frontend_order_detail](md-img/frontend_order_detail.png)
+###### 3-1. 選擇 PayPal 結帳
+![paypal_checkout](md-img/paypal_checkout.png)
+###### 3-2. PayPal 登入
+![paypal_account](md-img/paypal_account.png)
+###### 3-3. PayPal 結帳
+![paypal_test_store](md-img/paypal_test_store.png)
+###### 3-4. 結帳之後頁面
+![paypal_after_payment](md-img/paypal_after_payment.png)
+###### 3-5. 收據
+![paypal_receipt](md-img/paypal_receipt.png)
+###### 3-6. 列印收據
+![paypal_print_receipt](md-img/paypal_print_receipt.png)
+
+## 注意事項
+請自行申請PayPal商業帳戶
+使用SandBox測試
+![paypal_sandbox](md-img/paypal_sandbox.png)
 
 
 ## 參考

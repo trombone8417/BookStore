@@ -1,0 +1,7 @@
+PayPal Sandbox 測試
+請自行申請business account
+取得ID以及SECRET
+加入如下(檔案位置：/BookStoreWebsite/src/com/bookstore/service/PaymentServices.java)
+private static final String CLIENT_ID = "";
+private static final String CLIENT_SECRET = "";
+	
