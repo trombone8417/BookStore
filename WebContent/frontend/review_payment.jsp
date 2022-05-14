@@ -61,6 +61,52 @@
 					<td>${recipient.postalCode}</td>
 				</tr>
 			</table>
+			<h2>Transaction Details:</h2>
+			<table>
+				<tr>
+					<td><b>Description</b></td>
+					<td>${transaction.description}</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>Item List:</b></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<table border="1">
+						<tr>
+							<th>No.</th>
+							<th>Name</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th>Subtotal</th>
+						</tr>
+						<c:forEach items="${transaction.itemList.items}" var="item" varStatus="var">
+						<tr>
+							<td>${var.index + 1}</td>
+							<td>${item.name}</td>
+							<td>${item.quantity}</td>
+							<td><fmt:formatNumber value="${item.price}" type="currency" /></td>
+							<td><fmt:formatNumber value="${item.price * item.quantity}" type="currency" /></td>
+						</tr>
+						</c:forEach>
+						<tr>
+							<td colspan="5" align="right">
+								<p>Subtotal: <fmt:formatNumber value="${transaction.amount.details.subtotal}" type="currency" /></p>
+								<p>Tax: <fmt:formatNumber value="${transaction.amount.details.tax}" type="currency" /></p>
+								<p>Shipping Fee: <fmt:formatNumber value="${transaction.amount.details.shipping}" type="currency" /></p>
+								<p>TOTAL: <fmt:formatNumber value="${transaction.amount.total}" type="currency" /></p>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+			</table>
+				<div>
+				<br/>
+					<form action="execute_payment" method="post">
+						<input type="submit" value="Pay Now" />
+					</form>
+				</div>
 		</div>
 </body>
 </html>
